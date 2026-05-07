@@ -163,6 +163,8 @@ footer {
 /* ------------------------------ */
 /* MOBILE (up to ~600px width)    */
 /* ------------------------------ */
+
+/*
 @media (max-width: 600px) {
 
     #pfp {
@@ -212,6 +214,57 @@ footer {
         font-size: 1rem;
         padding: 0.5rem 0rem;
         width: 100%;
+    }
+}
+*/
+
+/* ------------------------------ */
+/* MOBILE (up to ~600px width)    */
+/* ------------------------------ */
+@media (max-width: 600px) {
+
+    #pfp {
+        width: 7.5rem;
+        border-radius: 1.5rem;
+    }
+
+    main h1 {
+        font-size: 2.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    main p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    main #btn-div {
+        width: 100%;
+        max-width: 20rem;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        gap: 0.8rem;
+    }
+
+    main #btn-div .btn {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 0.9rem 1rem;
+        justify-content: center;
+    }
+
+    main #btn-div .btn,
+    main #btn-div .btn::after {
+        transition: 0.35s;
+    }
+
+    footer {
+        font-size: 0.95rem;
+        text-align: center;
+        padding: 1rem;
+        box-sizing: border-box;
     }
 }
 
