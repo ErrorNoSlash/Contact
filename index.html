@@ -30,6 +30,7 @@
     <!-- JS scripts -->
     <script src="./scripts/cursor.js" defer></script>
     <script src="./scripts/alert.js" defer></script>
+    <script src="./scripts/getYear.js" defer></script>
 
 </head>
 
@@ -38,10 +39,9 @@
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
 
-    <header>
-        <img id="pfp" src="./images/pfp.jpg" alt="profile picture">
-    </header>
     <main>
+        <img id="pfp" src="./images/pfp.jpg" alt="profile picture">
+
         <h1>Dias Stas</h1>
         <p>Studying & writing code</p>
         <div id="btn-div">
@@ -71,7 +71,9 @@
         </div>
     </main>
     <footer>
-        <section id="mark"> &copy;2025 - Dias Stas</section>
+        <section id="mark">
+            &copy;<span id="year"></span> - Dias Stas
+        </section>
     </footer>
 </body>
 
