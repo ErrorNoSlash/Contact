@@ -100,7 +100,7 @@ body {
 }
 
 #pfp {
-    margin-top: 1rem;
+    margin-top: 10%;
     border: 0.15rem solid var(--border);
     border-radius: 2rem;
     width: 10rem;
