@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="banner.svg" alt="Dias Stas — Studying & writing code" width="100%">
+  <img src="assets/banner.svg" alt=" — contact site. A simple site for links" width="100%">
 </p>
 
 My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.errornoslash.be). One place with all the ways to reach me. Vanilla HTML, CSS and JavaScript — no frameworks, no build step.
