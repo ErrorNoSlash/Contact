@@ -1,63 +1,22 @@
 /* COLORS */
 :root {
-    --grey: #AEB5B8;
     --black: #040507;
-    --border: #525252;
-    --blackholeBorder: #ffffff14;
+    --panel: rgba(10, 12, 15, 0.78);
+    --panel-bar: rgba(12, 15, 19, 0.9);
+    --border: #23272c;
+    --grey: #AEB5B8;
+    --accent: #e3e3e3;
+    --dim: #6c7377;
+    --green: #7fb37a;
+    --red: #d98c86;
+    --link: #5e8bde;
 }
 
-/* Controles all the buttons */
-.btn {
-    cursor: none !important;
-    position: relative;
-    color: var(--clr);
-    border: none;
-    padding: 0.65rem 1rem;
-    font-size: 1.25rem;
-    width: auto;
-    border-radius: 3.125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    background: transparent;
-    overflow: hidden;
-    transition: 0.75s;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    z-index: 2;
-
-    /*---BORDER-BTN---*/
-    &.border-btn {
-        border: 0.063rem solid var(--border);
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--clr);
-        clip-path: circle(0% at 50% 50%);
-        -webkit-clip-path: circle(0% at 50% 50%);
-        transition: 0.75s;
-        z-index: -1;
-    }
-
-    &:hover::after {
-        clip-path: circle(100% at 50% 50%);
-        -webkit-clip-path: circle(100% at 50% 50%);
-    }
-
-    &:hover {
-        color: var(--black);
-        border-color: transparent;
-    }
+* {
+    box-sizing: border-box;
 }
 
+/* Base */
 html,
 body {
     height: 100%;
@@ -65,7 +24,31 @@ body {
     cursor: none;
 }
 
-/* cursor */
+body {
+    background-color: var(--black);
+    color: var(--grey);
+    font-family: "Fira Code", ui-monospace, "Courier New", monospace;
+    font-size: 15px;
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+/* Reactive background canvas */
+#bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: block;
+    pointer-events: none;
+}
+
+/* Custom cursor */
 .cursor-dot,
 .cursor-outline {
     pointer-events: none;
@@ -89,128 +72,374 @@ body {
     border: 0.1rem solid hsla(0, 0%, 100%, 0.5);
 }
 
-/* Main body */
-body {
-    background-color: var(--black);
-    color: var(--grey);
-    font-family: "Outfit", Arial, Helvetica, sans-serif;
+/* Terminal window (glass, so the reactive bg shows through) */
+.term {
+    position: relative;
+    width: 100%;
+    max-width: 58rem;
+    height: min(72vh, 42rem);
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
+    background: var(--panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 0.063rem solid var(--border);
+    border-radius: 0.85rem;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.55);
 
-#pfp {
-    margin-top: 10%;
-    border: 0.15rem solid var(--border);
-    border-radius: 2rem;
-    width: 10rem;
-    aspect-ratio: 1;
-    object-fit: cover;
-    margin-bottom: 1rem;
-}
-
-/* main section */
-main {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    align-items: center;
-
-    h1 {
-        font-family: "Rouge Script", Arial, Helvetica, sans-serif;
-        font-size: 3.5rem;
-        margin: 0rem;
-        padding-bottom: 1rem;
-        border-bottom: var(--border) solid 0.063rem;
-    }
-
-    p {
-        font-family: "Outfit", Arial, Helvetica, sans-serif;
-        font-size: 1.5rem;
-        margin: 0;
-        margin-top: 0.65rem;
-        margin-bottom: 2rem;
-    }
-
-    #btn-div {
+    .titlebar {
         display: flex;
         align-items: center;
-        flex-direction: column;
-        width: 30rem;
-        gap: 1rem;
+        gap: 0.5rem;
+        padding: 0.65rem 1rem;
+        border-bottom: 0.063rem solid var(--border);
+        background: var(--panel-bar);
+        flex-shrink: 0;
 
-        i {
-            margin-right: 0.5rem;
-            font-size: 1em;
-            vertical-align: middle;
+        .dot {
+            width: 0.7rem;
+            height: 0.7rem;
+            border-radius: 50%;
+            border: 0.063rem solid var(--dim);
+        }
+
+        .title {
+            margin-left: 0.6rem;
+            font-size: 0.8rem;
+            color: var(--dim);
+        }
+    }
+
+    .screen {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.1rem 1.25rem 1.4rem;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+
+        &::-webkit-scrollbar {
+            width: 0.55rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 0.55rem;
         }
     }
 }
 
-/* footer */
-footer {
-    font-family: "Outfit", Arial, Helvetica, sans-serif;
-    font-size: 1.25rem;
-    width: 100%;
+/* Output rows */
+.row {
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0.05rem 0;
+}
+
+.p-user {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.p-path {
+    color: var(--grey);
+    margin-right: 0.5ch;
+}
+
+/* Input line */
+.input-line {
     display: flex;
+    align-items: baseline;
+    margin-top: 0.15rem;
+
+    #cmdline {
+        flex: 1;
+        min-width: 2ch;
+        margin-left: 0.5ch;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--accent);
+        font: inherit;
+        font-size: 16px; /* keeps iOS from zooming on focus */
+        caret-color: var(--accent);
+        padding: 0;
+    }
+}
+
+/* Inline clickable command + links */
+.cmd {
+    color: var(--accent);
+    border-bottom: 0.063rem dotted var(--dim);
+    cursor: none;
+
+    &:hover {
+        border-bottom-style: solid;
+    }
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    cursor: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+/* Semantic colors */
+.muted { color: var(--dim); }
+.err { color: var(--red); }
+.boot { color: var(--grey); }
+.ok { color: var(--green); font-weight: 700; }
+
+/* Pre blocks */
+pre.ascii,
+pre.neofetch,
+pre.tbl,
+pre.links {
+    margin: 0.5rem 0 0.7rem;
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.3;
+
+    .k {
+        color: var(--accent);
+    }
+
+    .arrow {
+        color: var(--dim);
+    }
+
+    .ds {
+        color: var(--grey);
+    }
+}
+
+pre.ascii {
+    color: var(--accent);
+    font-size: clamp(0.44rem, 1.9vw, 0.8rem);
+}
+
+pre.neofetch {
+    font-size: clamp(0.6rem, 1.7vw, 0.86rem);
+}
+
+pre.links a {
+    display: inline;
+}
+
+/* Contact link list (wraps cleanly on mobile) */
+.links {
+    display: flex;
+    flex-direction: column;
+    margin: 0.4rem 0 0.7rem;
+}
+
+.links a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 1ch;
+    padding: 0.25rem 0.45rem;
+    margin: 0 -0.45rem;
+    border-radius: 0.35rem;
+    text-decoration: none;
+    color: var(--grey);
+    cursor: none;
+    transition: background 0.15s ease;
+
+    .k {
+        min-width: 9ch;
+        color: var(--accent);
+        font-weight: 500;
+    }
+
+    .arrow {
+        color: var(--dim);
+    }
+
+    .v {
+        flex: 1;
+        min-width: 0;
+        color: var(--link);
+        overflow-wrap: anywhere;
+    }
+
+    &:hover {
+        background: hsla(0, 0%, 100%, 0.05);
+    }
+
+    &:hover .v {
+        text-decoration: underline;
+    }
+}
+
+/* Command chips */
+/* Hamburger (mobile only) */
+.menu-toggle {
+    display: none;
+    position: relative;
+    z-index: 70;
+    margin-left: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.5rem;
+    height: 1.05rem;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: none;
+
+    span {
+        display: block;
+        width: 100%;
+        height: 0.11rem;
+        background: var(--grey);
+        border-radius: 0.1rem;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    &.is-open span:nth-child(1) {
+        transform: translateY(0.47rem) rotate(45deg);
+    }
+
+    &.is-open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    &.is-open span:nth-child(3) {
+        transform: translateY(-0.47rem) rotate(-45deg);
+    }
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 58rem;
     justify-content: center;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    margin-top: 2rem;
-    border-top: 0.063rem solid var(--border);
+
+    button {
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--grey);
+        background: transparent;
+        border: 0.063rem solid var(--border);
+        border-radius: 3.125rem;
+        padding: 0.45rem 1.1rem;
+        cursor: none;
+        transition: color 0.5s ease, border-color 0.5s ease;
+
+        /* circular fill-in, like the portfolio buttons */
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--grey);
+            clip-path: circle(0% at 50% 50%);
+            -webkit-clip-path: circle(0% at 50% 50%);
+            transition: clip-path 0.5s ease;
+            z-index: -1;
+        }
+
+        &:hover,
+        &:active {
+            color: var(--black);
+            border-color: transparent;
+        }
+
+        &:hover::after,
+        &:active::after {
+            clip-path: circle(100% at 50% 50%);
+            -webkit-clip-path: circle(100% at 50% 50%);
+        }
+    }
+}
+
+/* Footer */
+footer {
+    font-size: 0.8rem;
+    color: var(--dim);
+    text-align: center;
+
+    #mark {
+        margin: 0;
+    }
 }
 
 /* ------------------------------ */
-/* MOBILE (up to ~600px width)    */
+/* MOBILE (up to ~640px width)    */
 /* ------------------------------ */
-@media (max-width: 600px) {
-
-    #pfp {
-        margin-top: 25%;
-        width: 7.5rem;
-        border-radius: 1.5rem;
+@media (max-width: 640px) {
+    body {
+        padding: 0.75rem;
+        gap: 0.75rem;
+        font-size: 14px;
     }
 
-    main h1 {
-        font-size: 2.5rem;
-        padding-bottom: 0.5rem;
+    .links a .k {
+        min-width: 7ch;
     }
 
-    main p {
-        font-size: 1.2rem;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        padding: 0 1rem;
+    pre.links {
+        line-height: 1.7;
     }
 
-    main #btn-div {
-        width: 100%;
-        max-width: 20rem;
-        padding: 0 1rem;
-        box-sizing: border-box;
-        gap: 0.8rem;
+    .term {
+        height: 80dvh;
+        border-radius: 0.6rem;
+
+        .screen {
+            padding: 0.9rem 0.95rem 1.1rem;
+        }
     }
 
-    main #btn-div .btn {
-        width: 100%;
-        font-size: 1.1rem;
-        padding: 0.9rem 1rem;
+    .menu-toggle {
+        display: flex;
+    }
+
+    .chips {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-    }
+        gap: 0.7rem;
+        padding: 1.5rem;
+        background: rgba(4, 5, 7, 0.94);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        display: none;
 
-    main #btn-div .btn,
-    main #btn-div .btn::after {
-        transition: 0.35s;
+        &.open {
+            display: flex;
+        }
+
+        button {
+            width: min(72vw, 18rem);
+            font-size: 1.05rem;
+            padding: 0.8rem 1rem;
+            text-align: center;
+        }
     }
 
     footer {
-        font-size: 0.95rem;
-        text-align: center;
-        padding: 0.5rem;
-        box-sizing: border-box;
+        font-size: 0.72rem;
     }
 }
 
+/* Touch devices: no custom cursor, restore default pointer */
 @media (hover: none) and (pointer: coarse) {
 
     .cursor-dot,
@@ -218,7 +447,32 @@ footer {
         display: none;
     }
 
-    body {
+    html,
+    body,
+    a,
+    .cmd,
+    .menu-toggle,
+    .chips button {
+        cursor: default;
+    }
+}
+
+/* Belt-and-suspenders: on any narrow viewport (including desktop-browser
+   "mobile" emulation, which still reports a fine pointer) the custom cursor
+   is more clutter than charm on such a compact layout, so hide it too. */
+@media (max-width: 640px) {
+
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
+
+    html,
+    body,
+    a,
+    .cmd,
+    .menu-toggle,
+    .chips button {
         cursor: default;
     }
 }
