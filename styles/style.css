@@ -10,6 +10,8 @@
     --green: #7fb37a;
     --red: #d98c86;
     --link: #5e8bde;
+    --bright: #e3e3e3;
+    --glow: rgba(174, 181, 184, 0.3);
 }
 
 * {
@@ -55,28 +57,62 @@ body {
     pointer-events: none;
 }
 
-/* Custom cursor */
-.cursor-dot,
-.cursor-outline {
-    pointer-events: none;
+/* Custom cursor — crosshair, like the portfolio site */
+#cursor {
     position: fixed;
     top: 0;
     left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
+    width: 1.6rem;
+    height: 1.6rem;
+    pointer-events: none;
     z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.15s ease, filter 0.25s ease;
+    will-change: transform;
 }
 
-.cursor-dot {
-    width: 0.4rem;
-    height: 0.4rem;
-    background-color: white;
+/* four bars with an open center, like a scope */
+#cursor::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    --c: var(--grey);
+    background:
+        linear-gradient(var(--c), var(--c)) center top / 0.22rem 0.45rem,
+        linear-gradient(var(--c), var(--c)) center bottom / 0.22rem 0.45rem,
+        linear-gradient(var(--c), var(--c)) left center / 0.45rem 0.22rem,
+        linear-gradient(var(--c), var(--c)) right center / 0.45rem 0.22rem;
+    background-repeat: no-repeat;
+    transition: background 0.2s ease;
 }
 
-.cursor-outline {
-    width: 1.875rem;
-    height: 1.875rem;
-    border: 0.1rem solid hsla(0, 0%, 100%, 0.5);
+#cursor.visible {
+    opacity: 1;
+}
+
+/* wrapped around a chip button: animate the size + move */
+#cursor.framing {
+    transition: opacity 0.15s ease, filter 0.25s ease,
+        transform 0.18s ease, width 0.18s ease, height 0.18s ease;
+}
+
+/* hover: bars open into the corner reticle + glow */
+#cursor.on-link {
+    filter: drop-shadow(0 0 0.45rem var(--glow));
+}
+
+#cursor.on-link::before {
+    --c: var(--bright);
+    background:
+        linear-gradient(var(--c), var(--c)) top left / 0.45rem 0.125rem,
+        linear-gradient(var(--c), var(--c)) top left / 0.125rem 0.45rem,
+        linear-gradient(var(--c), var(--c)) top right / 0.45rem 0.125rem,
+        linear-gradient(var(--c), var(--c)) top right / 0.125rem 0.45rem,
+        linear-gradient(var(--c), var(--c)) bottom left / 0.45rem 0.125rem,
+        linear-gradient(var(--c), var(--c)) bottom left / 0.125rem 0.45rem,
+        linear-gradient(var(--c), var(--c)) bottom right / 0.45rem 0.125rem,
+        linear-gradient(var(--c), var(--c)) bottom right / 0.125rem 0.45rem;
+    background-repeat: no-repeat;
 }
 
 /* Terminal window (glass, so the reactive bg shows through) */
@@ -452,8 +488,7 @@ footer {
 /* Touch devices: no custom cursor, restore default pointer */
 @media (hover: none) and (pointer: coarse) {
 
-    .cursor-dot,
-    .cursor-outline {
+    #cursor {
         display: none;
     }
 
@@ -472,8 +507,7 @@ footer {
    is more clutter than charm on such a compact layout, so hide it too. */
 @media (max-width: 640px) {
 
-    .cursor-dot,
-    .cursor-outline {
+    #cursor {
         display: none;
     }
 
