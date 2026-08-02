@@ -96,13 +96,20 @@ body {
         transform 0.18s ease, width 0.18s ease, height 0.18s ease;
 }
 
-/* hover: bars open into the corner reticle + glow */
+/* hover: bars turn bright + glow, but keep the open crosshair shape at
+   the default small size (brackets are reserved for framing, below) */
 #cursor.on-link {
     filter: drop-shadow(0 0 0.45rem var(--glow));
 }
 
 #cursor.on-link::before {
     --c: var(--bright);
+}
+
+/* only switch to corner brackets once wrapped around a chip button, where the
+   box is big enough for 8 separate small segments to actually read as
+   brackets instead of merging into a solid blob */
+#cursor.framing.on-link::before {
     background:
         linear-gradient(var(--c), var(--c)) top left / 0.45rem 0.125rem,
         linear-gradient(var(--c), var(--c)) top left / 0.125rem 0.45rem,
