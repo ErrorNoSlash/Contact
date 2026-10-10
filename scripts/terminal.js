@@ -1,8 +1,6 @@
 /*controles the terminal on shell.html*/
 const terminalLog = document.querySelector("#terminal-log");
 const terminalInput = document.querySelector("#terminal-input");
-const rootElement = document.documentElement;
-const prefersLightQuery = window.matchMedia("(prefers-color-scheme: light)");
 
 const commandHistory = [];
 let commandHistoryIndex = 0;
@@ -90,15 +88,6 @@ const commands = {
         run: function () {
             printLine("going home ...");
             goToPage("index.html");
-        }
-    },
-    theme: {
-        usage: "theme",
-        about: "switch between light and dark",
-        run: function () {
-            const currentTheme = rootElement.dataset.theme || (prefersLightQuery.matches ? "light" : "dark");
-            rootElement.dataset.theme = currentTheme === "light" ? "dark" : "light";
-            printLine(`theme: ${rootElement.dataset.theme}`);
         }
     },
     clear: {

@@ -3,6 +3,7 @@ const pageTransition = document.querySelector("#page-transition");
 const htmlElement = document.documentElement;
 const storageKey = "pageTransition";
 const coverTime = 550;
+const maximumWaitTime = 600;
 
 let isLeaving = false;
 
@@ -26,6 +27,8 @@ function goToPage(url) {
 }
 
 function revealPage() {
+    if (!htmlElement.classList.contains("is-arriving")) return;
+
     try {
         sessionStorage.removeItem(storageKey);
     } catch (error) { }
@@ -66,4 +69,5 @@ window.addEventListener("pageshow", function (e) {
 
 if (htmlElement.classList.contains("is-arriving")) {
     document.fonts.ready.then(revealPage);
+    setTimeout(revealPage, maximumWaitTime);
 }
