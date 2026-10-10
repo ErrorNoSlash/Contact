@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dias Stas - Shell</title>
+    <meta name="description" content="Terminal for Dias Stas' contact page. Type help.">
+
+    <link rel="canonical" href="https://contact.errornoslash.be/shell.html">
+    <meta name="theme-color" content="#040507">
+
+    <!-- Open Graph / Twitter (link preview) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Dias Stas">
+    <meta property="og:url" content="https://contact.errornoslash.be/shell.html">
+    <meta property="og:title" content="Dias Stas - Shell">
+    <meta property="og:description" content="A terminal for Dias Stas' contact page. Type help.">
+    <meta property="og:image" content="https://contact.errornoslash.be/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Dias Stas - dot-matrix DS logo and the text: studying and writing code">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dias Stas - Shell">
+    <meta name="twitter:description" content="A terminal for Dias Stas' contact page. Type help.">
+    <meta name="twitter:image" content="https://contact.errornoslash.be/images/og-image.png">
+
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- JS scripts -->
+    <script src="./scripts/cursor.js" defer></script>
+    <script src="./scripts/getYear.js" defer></script>
+    <script src="./scripts/tabTitle.js" defer></script>
+    <script src="./scripts/title.js" defer></script>
+    <script src="./scripts/links.js" defer></script>
+    <script src="./scripts/overlay.js" defer></script>
+    <script src="./scripts/terminal.js" defer></script>
+</head>
+
+<body>
+
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <main class="sheet">
+
+        <div class="row nav">
+            <a class="cell nav-logo" href="index.html" aria-label="Back to contact">ds/</a>
+            <div class="cell nav-prompt">dias@contact:~$ shell<span class="caret"></span></div>
+            <nav class="cell nav-tabs" aria-label="Sections">
+                <a class="pill" href="index.html">contact?</a>
+                <a class="pill" href="#links">links?</a>
+                <a class="pill" href="#terminal">shell?</a>
+            </nav>
+        </div>
+
+        <div class="row title compact">
+            <div class="title-label"><span><span class="title-star">&#10035;</span> DIAS + STAS</span><span class="title-star">&#10035;</span></div>
+            <div class="echo echo-far" aria-hidden="true">SHELL</div>
+            <div class="echo echo-near" aria-hidden="true">SHELL</div>
+            <h1>SHELL</h1>
+        </div>
+
+        <section class="row terminal" id="terminal" aria-label="Terminal">
+            <p class="terminal-hint">new here? type <b>help</b> to see every command, or <b>ls</b> for the links</p>
+            <div class="terminal-log" id="terminal-log" aria-live="polite"></div>
+            <label class="terminal-prompt">$
+                <input id="terminal-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+                    aria-label="terminal command">
+            </label>
+        </section>
+
+        <footer class="row site-footer">
+            <div>&copy;<span id="year"></span> - Dias Stas</div>
+        </footer>
+
+    </main>
+
+    <div class="veil" id="veil" aria-hidden="true">
+        <section class="panel" id="panel-links" role="dialog" aria-modal="true" aria-label="Links" hidden>
+            <div class="panel-head">
+                <span>dias@contact:~$ ls links</span>
+                <button class="pill" type="button" data-close>close &#10005;</button>
+            </div>
+            <nav class="panel-body" aria-label="Links"></nav>
+        </section>
+    </div>
+
+</body>
+
+</html>

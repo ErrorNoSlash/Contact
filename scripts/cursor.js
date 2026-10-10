@@ -6,19 +6,13 @@ window.addEventListener("mousemove", function (e) {
     const posX = e.clientX;
     const posY = e.clientY;
 
+    document.body.classList.add("cursor-visible");
+
     cursorDot.style.left = `${posX}px`;
     cursorDot.style.top = `${posY}px`;
-
-    cursorOutline.style.left = `${posY}px`;
-    cursorOutline.style.top = `${posY}px`;
 
     cursorOutline.animate({
         left: `${posX}px`,
         top: `${posY}px`
     }, { duration: 500, fill: "forwards" })
 })
-
-
-
-
-

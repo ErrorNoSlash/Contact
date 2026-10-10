@@ -3,23 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal-website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dias Stas - Contact</title>
+    <meta name="description" content="Dias Stas — studying & writing code. Website, GitHub, GitLab, Mastodon and mail.">
 
-    <!-- Open Graph / social share -->
-    <meta name="description" content="Dias Stas — studying & writing code. Links: website, GitHub, GitLab, Mastodon, and mail.">
+    <link rel="canonical" href="https://contact.errornoslash.be/">
+    <meta name="theme-color" content="#040507">
+
+    <!-- Open Graph / Twitter (link preview) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Dias Stas — Contact">
-    <meta property="og:description" content="Studying & writing code. Website, GitHub, GitLab, Mastodon, and mail.">
+    <meta property="og:site_name" content="Dias Stas">
     <meta property="og:url" content="https://contact.errornoslash.be/">
-    <meta property="og:image" content="https://contact.errornoslash.be/images/social-card.png">
+    <meta property="og:title" content="Dias Stas - Contact">
+    <meta property="og:description" content="Studying &amp; writing code. Website, GitHub, GitLab, Mastodon and mail.">
+    <meta property="og:image" content="https://contact.errornoslash.be/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Dias Stas — contact.errornoslash.be">
+    <meta property="og:image:alt" content="Dias Stas - dot-matrix DS logo and the text: studying and writing code">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dias Stas — Contact">
-    <meta name="twitter:description" content="Studying & writing code.">
-    <meta name="twitter:image" content="https://contact.errornoslash.be/images/social-card.png">
+    <meta name="twitter:title" content="Dias Stas - Contact">
+    <meta name="twitter:description" content="Studying &amp; writing code. Website, GitHub, GitLab, Mastodon and mail.">
+    <meta name="twitter:image" content="https://contact.errornoslash.be/images/og-image.png">
+
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -27,26 +35,17 @@
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rouge+Script&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Questrial&family=Rouge+Script&display=swap"
-        rel="stylesheet">
-
-    <!-- Box Icons -->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
     <!-- JS scripts -->
     <script src="./scripts/cursor.js" defer></script>
     <script src="./scripts/getYear.js" defer></script>
-
+    <script src="./scripts/tabTitle.js" defer></script>
+    <script src="./scripts/title.js" defer></script>
+    <script src="./scripts/marquee.js" defer></script>
+    <script src="./scripts/links.js" defer></script>
+    <script src="./scripts/overlay.js" defer></script>
 </head>
 
 <body>
@@ -54,42 +53,102 @@
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
 
-    <main>
-        <img id="pfp" src="./images/pfp.jpg" alt="profile picture">
+    <main class="sheet">
 
-        <h1>Dias Stas</h1>
-        <p>Studying & writing code</p>
-        <div id="btn-div">
-            <a href="https://hello.errornoslash.be/" style="text-decoration: none; width: 100%; --clr: #AEB5B8;" class="btn border-btn" id="website-btn">
-                <i class='bx  bx-link'></i>
-                Website</a>
-
-            <a href="https://github.com/ErrorNoSlash" style="text-decoration: none; width: 100%; --clr: #AEB5B8;"
-                class="btn border-btn">
-                <i class='bx bxl-github'></i>
-                Github</a>
-
-            <a href="https://gitlab.com/ErrorN0Slash/" style="text-decoration: none; width: 100%; --clr: #AEB5B8;"
-                class="btn border-btn">
-                <i class='bx bxl-gitlab'></i>
-                Gitlab</a>
-
-            <a href="https://mastodon.social/@slashy" style="text-decoration: none; width: 100%; --clr: #AEB5B8;"
-                class="btn border-btn">
-                <i class='bx bxl-mastodon'></i>
-                Mastadon</a>
-
-            <a href="mailto:dias.stas@pm.me" style="text-decoration: none; width: 100%; --clr: #AEB5B8;"
-                class="btn border-btn">
-                <i class='bx bx-envelope'></i>
-                Mail</a>
+        <div class="row nav">
+            <div class="cell nav-logo" aria-hidden="true">ds/</div>
+            <div class="cell nav-prompt">dias@contact:~$ ls<span class="caret"></span></div>
+            <nav class="cell nav-tabs" aria-label="Sections">
+                <a class="pill" href="#who">who?</a>
+                <a class="pill" href="#links">links?</a>
+                <a class="pill" href="shell.html">shell?</a>
+            </nav>
         </div>
+
+        <div class="row title">
+            <div class="title-label"><span><span class="title-star">&#10035;</span> DIAS + STAS</span><span class="title-star">&#10035;</span></div>
+            <div class="echo echo-far" aria-hidden="true">CONTACT</div>
+            <div class="echo echo-near" aria-hidden="true">CONTACT</div>
+            <h1>CONTACT</h1>
+        </div>
+
+        <div class="row lead">
+            <div class="cell lead-text">
+                <p>Studying &amp; writing code,<br>reachable through five doors.</p>
+                <em>/a link page/</em>
+            </div>
+            <div class="cell lead-caption"><span class="caption">WEBSITE / GIT / FEDI / MAIL</span></div>
+            <a class="cell lead-cta" href="#links" aria-label="Jump to links">
+                <span class="arrow">&darr;</span>
+                <span class="caption">HUMAN / CODE / CONTACT</span>
+            </a>
+        </div>
+
+        <div class="row marquee" aria-hidden="true"><span>STUDYING &amp; WRITING CODE * </span></div>
+
+        <div class="row content">
+
+            <div class="profile" id="who">
+                <img src="images/pfp.jpg" alt="Profile picture of Dias Stas">
+                <span class="caption profile-tag">PORTRAIT</span>
+                <div class="profile-info">
+                    <div class="profile-card">
+                        <small class="card-label">{ whoami }</small>
+                        <b class="card-name">Dias Stas</b>
+                        <span>studying &amp; writing code</span>
+                        <small class="card-label card-status">[ &#9679; online ]</small>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="link-list" id="links" aria-label="Links">
+                <a class="link-row" href="https://hello.errornoslash.be/" target="_blank" rel="noopener">
+                    <span class="link-number">01</span><span><b class="link-name">Website</b><small class="link-url">hello.errornoslash.be</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="https://github.com/ErrorNoSlash" target="_blank" rel="noopener">
+                    <span class="link-number">02</span><span><b class="link-name">GitHub</b><small class="link-url">github.com/ErrorNoSlash</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="https://gitlab.com/ErrorN0Slash/" target="_blank" rel="noopener">
+                    <span class="link-number">03</span><span><b class="link-name">GitLab</b><small class="link-url">gitlab.com/ErrorN0Slash</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="https://mastodon.social/@slashy" target="_blank" rel="noopener">
+                    <span class="link-number">04</span><span><b class="link-name">Mastodon</b><small class="link-url">@slashy@mastodon.social</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="mailto:dias.stas@pm.me">
+                    <span class="link-number">05</span><span><b class="link-name">Mail</b><small class="link-url">dias.stas@pm.me</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+            </nav>
+
+        </div>
+
+        <footer class="row site-footer">
+            <div>&copy;<span id="year"></span> - Dias Stas</div>
+        </footer>
+
     </main>
-    <footer>
-        <section id="mark">
-            &copy;<span id="year"></span> - Dias Stas
+
+    <!-- who? / links? panels (filled by overlay.js) -->
+    <div class="veil" id="veil" aria-hidden="true">
+        <section class="panel" id="panel-who" role="dialog" aria-modal="true" aria-label="Who" hidden>
+            <div class="panel-head">
+                <span>dias@contact:~$ whoami</span>
+                <button class="pill" type="button" data-close>close &#10005;</button>
+            </div>
+            <div class="panel-body"></div>
+            <a class="link-row" href="mailto:dias.stas@pm.me">
+                <span><b class="link-name">Say hi</b><small class="link-url">dias.stas@pm.me</small></span><span class="link-go">GO &nearr;</span>
+            </a>
         </section>
-    </footer>
+
+        <section class="panel" id="panel-links" role="dialog" aria-modal="true" aria-label="Links" hidden>
+            <div class="panel-head">
+                <span>dias@contact:~$ ls links</span>
+                <button class="pill" type="button" data-close>close &#10005;</button>
+            </div>
+            <nav class="panel-body" aria-label="Links"></nav>
+        </section>
+    </div>
+
 </body>
 
 </html>
