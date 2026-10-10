@@ -89,7 +89,7 @@ const commands = {
         about: "go back to the contact page",
         run: function () {
             printLine("going home ...");
-            window.location.href = "index.html";
+            goToPage("index.html");
         }
     },
     theme: {

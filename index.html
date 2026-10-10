@@ -25,6 +25,13 @@
     <meta name="twitter:description" content="Studying &amp; writing code. Website, GitHub, GitLab, Mastodon and mail.">
     <meta name="twitter:image" content="https://contact.errornoslash.be/images/og-image.png">
 
+    <!-- page transition: runs before the first paint -->
+    <script>
+        try {
+            if (sessionStorage.getItem("pageTransition")) document.documentElement.classList.add("is-arriving");
+        } catch (error) { }
+    </script>
+
     <link rel="icon" href="favicon.ico" sizes="48x48">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -38,7 +45,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
+    <noscript><style>.preloader { display: none; }</style></noscript>
+
     <!-- JS scripts -->
+    <script src="./scripts/preloader.js" defer></script>
+    <script src="./scripts/pageTransition.js" defer></script>
     <script src="./scripts/cursor.js" defer></script>
     <script src="./scripts/getYear.js" defer></script>
     <script src="./scripts/tabTitle.js" defer></script>
@@ -49,6 +60,20 @@
 </head>
 
 <body>
+
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <div class="preloader-frame">
+            <div class="preloader-box">
+                <p class="preloader-text">dias@contact:~$ loading<span class="caret"></span></p>
+                <div class="preloader-bar"><span class="preloader-fill" id="preloader-fill"></span></div>
+                <p class="preloader-count"><span id="preloader-count">0</span>%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-transition" id="page-transition" aria-hidden="true">
+        <span class="page-transition-logo">ds/</span>
+    </div>
 
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>

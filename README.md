@@ -11,6 +11,8 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 - 🎨 Link rows with a circular clip-path fill on hover
 - 🪟 `who?` and `links?` blur the page and open a panel (close with the button, `Esc`, or a click outside)
 - 💻 Terminal on its own page — `help`, `ls`, `open`, `whoami`, `home`, `theme`, `clear`
+- 🎞️ Clean page transition — a curtain wipes up between the contact page and the shell
+- ⏳ Quick terminal-style preloader with a progress bar, skipped for reduced motion
 - ⌨️ Browser tab title types and deletes terminal commands, like a shell prompt
 - 🌗 Light and dark theme that follows the system (or type `theme` in the shell)
 - 🖱️ Custom cursor (dot + trailing outline), disabled on touch devices
@@ -48,6 +50,8 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 │   ├── normalize.css
 │   └── style.css       # colors, layout, theme, transitions
 └── scripts/
+    ├── preloader.js    # preloader with progress bar
+    ├── pageTransition.js # curtain wipe between index.html and shell.html
     ├── cursor.js       # custom cursor
     ├── getYear.js      # dynamic footer year
     ├── tabTitle.js     # typing and deleting text in the browser tab
