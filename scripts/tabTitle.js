@@ -1,5 +1,5 @@
 /*controles the typing and deleting terminal text in the browser tab*/
-const tabCommands = ["hello, world", "studying...", "writing code", "sudo say hi", "ping dias"];
+const tabCommands = ["hello, world", "studying...", "rewriting code", "hi", "ping dias"];
 const tabPrompt = "~$ ";
 const tabCursor = "\u2588";
 
