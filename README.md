@@ -9,6 +9,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 - 🔗 Link-in-bio layout — a full-page brutalist grid with the profile picture, name and numbered link rows
 - 🔠 Huge title with sliced echoes, letters spread across the row
 - 🎨 Link rows with a circular clip-path fill on hover
+- ✨ Profile card that inverts with a circular fill on hover (like the link rows) while the asterisk spins
 - 🪟 `who?` and `links?` blur the page and open a panel (close with the button, `Esc`, or a click outside)
 - 💻 Terminal on its own page — `help`, `ls`, `open`, `whoami`, `home`, `clear`
 - 🎞️ Clean page transition — a curtain wipes up between the contact page and the shell
