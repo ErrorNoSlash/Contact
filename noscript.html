@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dias Stas - JavaScript is off</title>
+    <meta name="description" content="This page shows when JavaScript is turned off. The links still work.">
+    <meta name="robots" content="noindex">
+
+    <meta name="theme-color" content="#e4e4e4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#040507" media="(prefers-color-scheme: dark)">
+
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="rotate-notice">
+        <div class="rotate-notice-frame">
+            <div class="rotate-notice-icon" aria-hidden="true"><span></span></div>
+            <div class="rotate-notice-text">
+                <p class="rotate-notice-prompt">dias@contact:~$ rotate<span class="caret"></span></p>
+                <p class="rotate-notice-title">turn your phone upright</p>
+                <p class="rotate-notice-hint">[ this site is made for portrait ]</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="sheet">
+
+        <div class="row nav">
+            <a class="cell nav-logo" href="index.html" aria-label="Reload the site">ds/</a>
+            <div class="cell nav-prompt">dias@contact:~$ js --status<span class="caret"></span></div>
+            <nav class="cell nav-tabs" aria-label="Sections">
+                <a class="pill" href="index.html">reload?</a>
+            </nav>
+        </div>
+
+        <div class="row title">
+            <div class="title-label"><span><span class="title-star">&#10035;</span> DIAS + STAS</span><span class="title-star">&#10035;</span></div>
+            <div class="echo echo-far" aria-hidden="true"><span>N</span><span>O</span><span>&nbsp;</span><span>J</span><span>S</span></div>
+            <div class="echo echo-near" aria-hidden="true"><span>N</span><span>O</span><span>&nbsp;</span><span>J</span><span>S</span></div>
+            <h1 aria-label="No JS"><span>N</span><span>O</span><span>&nbsp;</span><span>J</span><span>S</span></h1>
+        </div>
+
+        <div class="row content">
+
+            <section class="terminal notice" aria-label="Notice">
+                <p class="terminal-hint">this page shows when javascript is turned off</p>
+                <div class="terminal-log">
+                    <div>$ javascript --status</div>
+                    <div class="terminal-error">error: javascript is disabled in this browser</div>
+                    <div>the preloader, page transitions, panels and terminal need it.</div>
+                    <div>the links still work, they are plain html.</div>
+                    <div>turned it on? <a href="index.html">reload the site</a></div>
+                </div>
+            </section>
+
+            <nav class="link-list" id="links" aria-label="Links">
+                <a class="link-row" href="https://hello.errornoslash.be/" target="_blank" rel="noopener">
+                    <span class="link-number">01</span><span><b class="link-name">Website</b><small class="link-url">hello.errornoslash.be</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="https://github.com/ErrorNoSlash" target="_blank" rel="noopener">
+                    <span class="link-number">02</span><span><b class="link-name">GitHub</b><small class="link-url">github.com/ErrorNoSlash</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="https://gitlab.com/ErrorN0Slash/" target="_blank" rel="noopener">
+                    <span class="link-number">03</span><span><b class="link-name">GitLab</b><small class="link-url">gitlab.com/ErrorN0Slash</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="https://mastodon.social/@slashy" target="_blank" rel="noopener">
+                    <span class="link-number">04</span><span><b class="link-name">Mastodon</b><small class="link-url">@slashy@mastodon.social</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+                <a class="link-row" href="mailto:dias.stas@pm.me">
+                    <span class="link-number">05</span><span><b class="link-name">Mail</b><small class="link-url">dias.stas@pm.me</small></span><span class="link-go">GO &nearr;</span>
+                </a>
+            </nav>
+
+        </div>
+
+        <footer class="row site-footer">
+            <div>&copy;2026 - Dias Stas</div>
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

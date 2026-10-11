@@ -1,6 +1,4 @@
-/*controles the spotlight and tilt on the profile card*/
-const tiltAmount = 8;
-
+/*controles the spotlight on the profile card*/
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.addEventListener("pointermove", function (e) {
         if (e.pointerType !== "mouse") return;
@@ -14,7 +12,5 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
         card.style.setProperty("--x", `${x * 100}%`);
         card.style.setProperty("--y", `${y * 100}%`);
-        card.style.setProperty("--tilt-x", `${(0.5 - y) * tiltAmount}deg`);
-        card.style.setProperty("--tilt-y", `${(x - 0.5) * tiltAmount}deg`);
     })
 }

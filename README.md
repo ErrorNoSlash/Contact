@@ -9,10 +9,12 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 - 🔗 Link-in-bio layout — a full-page brutalist grid with the profile picture, name and numbered link rows
 - 🔠 Huge title with sliced echoes, letters spread across the row
 - 🎨 Link rows with a circular clip-path fill on hover
-- ✨ Profile card with a spotlight that follows the cursor and a slight 3D tilt on hover, while the asterisk spins
+- ✨ Profile card that lifts with a hard shadow on hover while a spotlight follows the cursor and the asterisk spins
 - 🪟 `who?` and `links?` blur the page and open a panel (close with the button, `Esc`, or a click outside)
 - 💻 Terminal on its own page — `help`, `ls`, `open`, `whoami`, `home`, `clear`
 - 🎞️ Clean page transition — a curtain wipes up between the contact page and the shell
+- 📱 Rotate notice — a phone turned sideways gets an animated "turn your phone upright" screen (pure CSS)
+- 🚫 JavaScript-off page — visitors without JavaScript are sent to `noscript.html`, which explains it and keeps every link working
 - ⏳ Quick terminal-style preloader with a progress bar, skipped for reduced motion
 - ⌨️ Browser tab title types and deletes terminal commands, like a shell prompt
 - 🌗 Light and dark theme that follows the system
@@ -37,6 +39,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 .
 ├── index.html          # the link page
 ├── shell.html          # the terminal, on its own page
+├── noscript.html       # shown when JavaScript is turned off
 ├── CNAME               # custom domain for GitHub Pages
 ├── favicon.ico         # tab icon (16, 32, 48)
 ├── assets/
@@ -59,7 +62,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
     ├── title.js        # spreads the big title letters
     ├── marquee.js      # endless scrolling text
     ├── overlay.js      # who? / links? panels
-    ├── cardSpotlight.js # spotlight and tilt on the profile card
+    ├── cardSpotlight.js # spotlight on the profile card
     ├── links.js        # every link, for the shell and the links panel
     └── terminal.js     # the terminal on shell.html
 ```
