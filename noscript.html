@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/noscript.css">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,59 +39,88 @@
         </div>
     </div>
 
-    <main class="sheet">
+    <main class="noscript-page">
 
-        <div class="row nav">
-            <a class="cell nav-logo" href="index.html" aria-label="Reload the site">ds/</a>
-            <div class="cell nav-prompt">dias@contact:~$ js --status<span class="caret"></span></div>
-            <nav class="cell nav-tabs" aria-label="Sections">
-                <a class="pill" href="index.html">reload?</a>
-            </nav>
-        </div>
+        <section class="noscript-window" aria-labelledby="noscript-title">
 
-        <div class="row title">
-            <div class="title-label"><span><span class="title-star">&#10035;</span> DIAS + STAS</span><span class="title-star">&#10035;</span></div>
-            <div class="echo echo-far" aria-hidden="true"><span>N</span><span>O</span><span>&nbsp;</span><span>J</span><span>S</span></div>
-            <div class="echo echo-near" aria-hidden="true"><span>N</span><span>O</span><span>&nbsp;</span><span>J</span><span>S</span></div>
-            <h1 aria-label="No JS"><span>N</span><span>O</span><span>&nbsp;</span><span>J</span><span>S</span></h1>
-        </div>
+            <header class="noscript-head">
+                <span class="noscript-prompt">dias@contact:~$ js --status<span class="caret"></span></span>
+                <span class="noscript-badge">off</span>
+            </header>
 
-        <div class="row content">
+            <div class="noscript-body">
+                <svg class="noscript-logo" viewBox="0 0 77 42" aria-hidden="true">
+                    <circle cx="3.5" cy="3.5" r="3.2"/>
+                    <circle cx="10.5" cy="3.5" r="3.2"/>
+                    <circle cx="17.5" cy="3.5" r="3.2"/>
+                    <circle cx="24.5" cy="3.5" r="3.2"/>
+                    <circle cx="52.5" cy="3.5" r="3.2"/>
+                    <circle cx="59.5" cy="3.5" r="3.2"/>
+                    <circle cx="66.5" cy="3.5" r="3.2"/>
+                    <circle cx="73.5" cy="3.5" r="3.2"/>
+                    <circle cx="3.5" cy="10.5" r="3.2"/>
+                    <circle cx="10.5" cy="10.5" r="3.2"/>
+                    <circle cx="24.5" cy="10.5" r="3.2"/>
+                    <circle cx="31.5" cy="10.5" r="3.2"/>
+                    <circle cx="45.5" cy="10.5" r="3.2"/>
+                    <circle cx="52.5" cy="10.5" r="3.2"/>
+                    <circle cx="3.5" cy="17.5" r="3.2"/>
+                    <circle cx="10.5" cy="17.5" r="3.2"/>
+                    <circle cx="31.5" cy="17.5" r="3.2"/>
+                    <circle cx="45.5" cy="17.5" r="3.2"/>
+                    <circle cx="52.5" cy="17.5" r="3.2"/>
+                    <circle cx="59.5" cy="17.5" r="3.2"/>
+                    <circle cx="66.5" cy="17.5" r="3.2"/>
+                    <circle cx="3.5" cy="24.5" r="3.2"/>
+                    <circle cx="10.5" cy="24.5" r="3.2"/>
+                    <circle cx="31.5" cy="24.5" r="3.2"/>
+                    <circle cx="52.5" cy="24.5" r="3.2"/>
+                    <circle cx="59.5" cy="24.5" r="3.2"/>
+                    <circle cx="66.5" cy="24.5" r="3.2"/>
+                    <circle cx="73.5" cy="24.5" r="3.2"/>
+                    <circle cx="3.5" cy="31.5" r="3.2"/>
+                    <circle cx="10.5" cy="31.5" r="3.2"/>
+                    <circle cx="31.5" cy="31.5" r="3.2"/>
+                    <circle cx="66.5" cy="31.5" r="3.2"/>
+                    <circle cx="73.5" cy="31.5" r="3.2"/>
+                    <circle cx="3.5" cy="38.5" r="3.2"/>
+                    <circle cx="10.5" cy="38.5" r="3.2"/>
+                    <circle cx="17.5" cy="38.5" r="3.2"/>
+                    <circle cx="24.5" cy="38.5" r="3.2"/>
+                    <circle cx="45.5" cy="38.5" r="3.2"/>
+                    <circle cx="52.5" cy="38.5" r="3.2"/>
+                    <circle cx="59.5" cy="38.5" r="3.2"/>
+                    <circle cx="66.5" cy="38.5" r="3.2"/>
+                </svg>
 
-            <section class="terminal notice" aria-label="Notice">
-                <p class="terminal-hint">this page shows when javascript is turned off</p>
-                <div class="terminal-log">
-                    <div>$ javascript --status</div>
-                    <div class="terminal-error">error: javascript is disabled in this browser</div>
-                    <div>the preloader, page transitions, panels and terminal need it.</div>
-                    <div>the links still work, they are plain html.</div>
-                    <div>turned it on? <a href="index.html">reload the site</a></div>
+                <h1 class="noscript-title" id="noscript-title">JavaScript is <span class="noscript-off">off</span></h1>
+
+                <div class="noscript-toggle">
+                    <span class="noscript-switch" aria-hidden="true"><span class="noscript-knob"></span></span>
+                    <span class="noscript-hint">[ turn it on, then reload ]</span>
                 </div>
-            </section>
 
-            <nav class="link-list" id="links" aria-label="Links">
-                <a class="link-row" href="https://hello.errornoslash.be/" target="_blank" rel="noopener">
-                    <span class="link-number">01</span><span><b class="link-name">Website</b><small class="link-url">hello.errornoslash.be</small></span><span class="link-go">GO &nearr;</span>
-                </a>
-                <a class="link-row" href="https://github.com/ErrorNoSlash" target="_blank" rel="noopener">
-                    <span class="link-number">02</span><span><b class="link-name">GitHub</b><small class="link-url">github.com/ErrorNoSlash</small></span><span class="link-go">GO &nearr;</span>
-                </a>
-                <a class="link-row" href="https://gitlab.com/ErrorN0Slash/" target="_blank" rel="noopener">
-                    <span class="link-number">03</span><span><b class="link-name">GitLab</b><small class="link-url">gitlab.com/ErrorN0Slash</small></span><span class="link-go">GO &nearr;</span>
-                </a>
-                <a class="link-row" href="https://mastodon.social/@slashy" target="_blank" rel="noopener">
-                    <span class="link-number">04</span><span><b class="link-name">Mastodon</b><small class="link-url">@slashy@mastodon.social</small></span><span class="link-go">GO &nearr;</span>
-                </a>
-                <a class="link-row" href="mailto:dias.stas@pm.me">
-                    <span class="link-number">05</span><span><b class="link-name">Mail</b><small class="link-url">dias.stas@pm.me</small></span><span class="link-go">GO &nearr;</span>
-                </a>
-            </nav>
+                <div class="noscript-log">
+                    <p>$ js --status</p>
+                    <p class="noscript-error">error: javascript is disabled in this browser</p>
+                    <p>the preloader, page transitions, panels and terminal need it. the links below still work.</p>
+                </div>
 
-        </div>
+                <a class="noscript-reload" href="index.html">reload the site</a>
 
-        <footer class="row site-footer">
-            <div>&copy;2026 - Dias Stas</div>
-        </footer>
+                <p class="noscript-or">or go straight to</p>
+                <nav class="noscript-links" aria-label="Links">
+                    <a class="noscript-chip" href="https://hello.errornoslash.be/" target="_blank" rel="noopener">Website</a>
+                    <a class="noscript-chip" href="https://github.com/ErrorNoSlash" target="_blank" rel="noopener">GitHub</a>
+                    <a class="noscript-chip" href="https://gitlab.com/ErrorN0Slash/" target="_blank" rel="noopener">GitLab</a>
+                    <a class="noscript-chip" href="https://mastodon.social/@slashy" target="_blank" rel="noopener">Mastodon</a>
+                    <a class="noscript-chip" href="mailto:dias.stas@pm.me">Mail</a>
+                </nav>
+            </div>
+
+        </section>
+
+        <p class="noscript-footer">&copy;2026 - Dias Stas</p>
 
     </main>
 

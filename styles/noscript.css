@@ -1,0 +1,194 @@
+/* noscript.html: one centered terminal window, not the full-page sheet. Variables, fonts and the base come from style.css */
+.noscript-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    min-width: 0;
+}
+
+.noscript-window {
+    width: min(36rem, 100%);
+    border: var(--line-width) solid var(--foreground);
+    border-radius: 1.625rem;
+    overflow: hidden;
+}
+
+.noscript-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem 0.625rem 1.125rem;
+    border-bottom: var(--line-width) solid var(--line-color);
+    font-weight: 700;
+    white-space: nowrap;
+
+    .noscript-prompt {
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .noscript-badge {
+        flex: none;
+        padding: 0.25rem 0.875rem;
+        border-radius: 3.125rem;
+        background: var(--foreground);
+        color: var(--background);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+}
+
+.noscript-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem 1.125rem 1.5rem;
+
+    .noscript-logo {
+        width: 4.8125rem;
+        fill: var(--foreground);
+        opacity: 0.3;
+    }
+
+    .noscript-title {
+        margin: 0;
+        font: 900 clamp(2.75rem, 13vw, 4.75rem) / 1 var(--font-display);
+        letter-spacing: -0.04em;
+    }
+
+    .noscript-off {
+        display: inline-block;
+        padding: 0 0.22em 0.08em;
+        border-radius: 3.125rem;
+        background: var(--foreground);
+        color: var(--background);
+    }
+
+    .noscript-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+    }
+
+    .noscript-switch {
+        flex: none;
+        display: flex;
+        align-items: center;
+        width: 3.75rem;
+        height: 2rem;
+        padding: 0.25rem;
+        border: 0.125rem solid var(--foreground);
+        border-radius: 3.125rem;
+    }
+
+    .noscript-knob {
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 50%;
+        background: var(--foreground);
+    }
+
+    .noscript-hint {
+        font-size: 0.8125rem;
+        font-weight: 700;
+    }
+
+    .noscript-log {
+        align-self: stretch;
+        padding: 0.875rem 1.125rem 1rem;
+        border-radius: 1.25rem;
+        background: var(--card-background);
+        font-size: 0.8125rem;
+        line-height: 1.6;
+
+        p {
+            margin: 0;
+        }
+
+        p+p {
+            margin-top: 0.375rem;
+        }
+    }
+
+    .noscript-error {
+        text-decoration: underline wavy;
+        text-underline-offset: 0.1875rem;
+    }
+
+    .noscript-reload {
+        align-self: stretch;
+        display: grid;
+        place-items: center;
+        height: 3.25rem;
+        border: var(--line-width) solid var(--foreground);
+        border-radius: 3.125rem;
+        background: var(--foreground);
+        color: var(--background);
+        font: 900 1.125rem var(--font-display);
+        text-transform: uppercase;
+        transition: 0.3s;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--surface);
+            color: var(--foreground);
+        }
+    }
+
+    .noscript-or {
+        margin: -0.375rem 0 -0.5rem;
+        font-size: 0.75rem;
+        opacity: 0.7;
+    }
+
+    .noscript-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .noscript-chip {
+        display: inline-flex;
+        align-items: center;
+        height: 2.75rem;
+        padding: 0 1.125rem 0.125rem;
+        border: var(--line-width) solid var(--foreground);
+        border-radius: 3.125rem;
+        background: var(--surface);
+        font: 700 0.875rem/1 var(--font-mono);
+        transition: 0.3s;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--foreground);
+            color: var(--background);
+        }
+    }
+}
+
+.noscript-footer {
+    margin: 0;
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 360px) {
+    .noscript-head {
+        padding-left: 0.875rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .noscript-reload,
+    .noscript-chip {
+        transition: none;
+    }
+}

@@ -15,7 +15,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 - 💻 Terminal on its own page — `help`, `ls`, `open`, `whoami`, `home`, `clear`
 - 🎞️ Clean page transition — a curtain wipes up between the contact page and the shell
 - 📱 Rotate notice — a phone turned sideways gets an animated "turn your phone upright" screen (pure CSS)
-- 🚫 JavaScript-off page — visitors without JavaScript are sent to `noscript.html`, which explains it and keeps every link working
+- 🚫 JavaScript-off page — visitors without JavaScript are sent to `noscript.html`, a single terminal-style window that explains it and keeps every link working
 - ⏳ Quick terminal-style preloader with a progress bar, skipped for reduced motion
 - ⌨️ Browser tab title types and deletes terminal commands, like a shell prompt
 - 🌗 Light and dark theme that follows the system
@@ -53,6 +53,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 │   └── og-image.png    # link preview image (1200×630)
 ├── styles/
 │   ├── normalize.css
+│   ├── noscript.css    # the JavaScript-off page
 │   └── style.css       # colors, layout, transitions
 └── scripts/
     ├── preloader.js    # preloader with progress bar
