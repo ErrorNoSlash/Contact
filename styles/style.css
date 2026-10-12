@@ -162,6 +162,11 @@ a {
     }
 }
 
+/* the menu pill is only for phones, where the other pills are hidden */
+.nav-tabs .nav-menu {
+    display: none;
+}
+
 /* title: a huge word, letters spread over the row, with two sliced echoes on top.
    The row takes whatever height is left, the font size follows it (container units). */
 .title {
@@ -323,7 +328,7 @@ a {
     padding: 0.2rem;
     background-color: var(--surface);
     color: var(--foreground);
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     line-height: 1;
     }
 
@@ -545,6 +550,10 @@ a {
     .panel-body .profile-info {
         padding: 0.875rem;
         border-bottom: var(--line-width) solid var(--line-color);
+    }
+
+    .panel-body+.link-row {
+        border-top: var(--line-width) solid var(--line-color);
     }
 
     .link-row {
@@ -895,10 +904,23 @@ a {
 /* ------------------------------ */
 @media (max-width: 760px) {
     .nav {
-        grid-template-columns: 4rem 1fr;
+        grid-template-columns: 4rem 1fr auto;
+
+        .nav-prompt {
+            padding: 0.75rem 0.625rem;
+            font-size: 0.8125rem;
+        }
 
         .nav-tabs {
+            padding: 0.5rem;
+        }
+
+        .nav-tabs .pill {
             display: none;
+        }
+
+        .nav-tabs .nav-menu {
+            display: inline-flex;
         }
     }
 
@@ -949,7 +971,7 @@ a {
             top: 0.25rem;
             left: 0.25rem;
             padding: 0.16rem;
-            font-size: 0.5rem;
+            font-size: 0.4rem;
         }
     }
 
