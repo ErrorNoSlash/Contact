@@ -9,7 +9,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 - 🔗 Link-in-bio layout — a full-page brutalist grid with the profile picture, name and numbered link rows
 - 🔠 Huge title with sliced echoes, letters spread across the row
 - 🎨 Link rows with a circular clip-path fill on hover
-- ✨ Profile card that lifts with a hard shadow on hover while a spotlight follows the cursor and the asterisk spins
+- ✨ Profile card that lifts with a hard shadow on hover (or when pressed on a phone) while a spotlight follows the cursor or finger and the asterisk spins
 - 📱 Mobile menu — a `menu` pill opens the links panel with a Shell entry, so the terminal is reachable on phones
 - 🪟 `who?` and `links?` blur the page and open a panel (close with the button, `Esc`, or a click outside)
 - 💻 Terminal on its own page — `help`, `ls`, `open`, `whoami`, `home`, `clear`

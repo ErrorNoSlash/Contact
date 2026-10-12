@@ -21,18 +21,36 @@ function isMailLink(url) {
     return url.startsWith("mailto:");
 }
 
-function printLinkLine(number, link) {
-    const anchor = document.createElement("a");
-    anchor.href = link.url;
-    anchor.textContent = link.url.replace("mailto:", "");
+function createCell(text, className) {
+    const cell = document.createElement("span");
+    cell.className = className;
+    cell.textContent = text;
+    return cell;
+}
+
+function printHelpRow(command) {
+    const row = document.createElement("div");
+    row.className = "terminal-row terminal-help";
+    row.append(createCell(command.usage, "terminal-usage"), createCell(command.about, "terminal-about"));
+    terminalLog.append(row);
+    scrollLogToBottom();
+}
+
+function printLinkRow(number, link) {
+    const row = document.createElement("a");
+    row.className = "terminal-row terminal-link";
+    row.href = link.url;
     if (!isMailLink(link.url)) {
-        anchor.target = "_blank";
-        anchor.rel = "noopener";
+        row.target = "_blank";
+        row.rel = "noopener";
     }
 
-    const line = document.createElement("div");
-    line.append(`${number}  ${link.name.padEnd(9)} `, anchor);
-    terminalLog.append(line);
+    row.append(
+        createCell(number, "terminal-number"),
+        createCell(link.name, "terminal-name"),
+        createCell(link.display, "terminal-address")
+    );
+    terminalLog.append(row);
     scrollLogToBottom();
 }
 
@@ -46,19 +64,17 @@ const commands = {
         usage: "help",
         about: "show this list",
         run: function () {
-            printLine("commands:");
-            Object.values(commands).forEach(function (command) {
-                printLine(`  ${command.usage.padEnd(15)}${command.about}`);
-            });
+            printLine("commands", "terminal-note");
+            Object.values(commands).forEach(printHelpRow);
         }
     },
     ls: {
         usage: "ls",
-        about: "list every link (click one to open it)",
+        about: "list every link (click or tap one to open it)",
         run: function () {
-            printLine("#  name      link (click to open)");
+            printLine("links - click or tap one to open it", "terminal-note");
             links.forEach(function (link, index) {
-                printLinkLine(index + 1, link);
+                printLinkRow(index + 1, link);
             });
         }
     },
@@ -113,7 +129,7 @@ function runCommand(text) {
 terminalInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
         const text = terminalInput.value;
-        printLine(`$ ${text}`);
+        printLine(`$ ${text}`, "terminal-command");
         if (text.trim()) commandHistory.push(text);
         commandHistoryIndex = commandHistory.length;
         terminalInput.value = "";
@@ -133,4 +149,6 @@ terminalInput.addEventListener("keydown", function (e) {
 })
 
 printLine("welcome - type help to see what you can do");
-terminalInput.focus();
+
+// on a phone the keyboard would cover the page, so only focus the input where there is a mouse
+if (window.matchMedia("(hover: hover)").matches) terminalInput.focus();
