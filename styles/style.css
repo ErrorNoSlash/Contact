@@ -578,6 +578,10 @@ a {
         border-top: var(--line-width) solid var(--line-color);
     }
 
+    & > .link-row {
+        border-bottom: none;
+    }
+
     .link-row {
         flex: none;
         padding: 0.875rem 1.125rem;
@@ -585,6 +589,56 @@ a {
         .link-name {
             font-size: clamp(1.4rem, 6vw, 2.1rem);
         }
+    }
+}
+
+/* icon row of the menu panel: only shown on phones, where it replaces the five link rows (icons by Phosphor Icons) */
+.panel-icons {
+    display: none;
+}
+
+.icon-link {
+    --clr: var(--foreground);
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 4.25rem;
+    overflow: hidden;
+    z-index: 0;
+    transition: color 0.6s;
+
+    & + & {
+        border-left: var(--line-width) solid var(--line-color);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--clr);
+        clip-path: circle(0% at 50% 50%);
+        -webkit-clip-path: circle(0% at 50% 50%);
+        transition: 0.6s;
+        z-index: -1;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+        color: var(--background);
+    }
+
+    &:hover::after,
+    &:focus-visible::after,
+    &:active::after {
+        clip-path: circle(100% at 50% 50%);
+        -webkit-clip-path: circle(100% at 50% 50%);
+    }
+
+    svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        fill: currentColor;
     }
 }
 
@@ -625,7 +679,30 @@ a {
         }
 
         .terminal-error {
-            text-decoration: underline wavy;
+            grid-template-columns: auto 1fr;
+            align-items: baseline;
+        }
+
+        .terminal-badge {
+            padding: 0.0625rem 0.625rem 0.125rem;
+            border-radius: 3.125rem;
+            background: var(--foreground);
+            color: var(--background);
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .terminal-message {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .terminal-tip {
+            grid-column: 2;
+            font-size: 0.75rem;
+            opacity: 0.7;
         }
 
         .terminal-command {
@@ -979,6 +1056,23 @@ a {
 /* MOBILE (up to ~760px width)    */
 /* ------------------------------ */
 @media (max-width: 760px) {
+    #panel-links .panel-body {
+        display: none;
+    }
+
+    #panel-links .panel-body+.link-row {
+        border-top: none;
+    }
+
+    #panel-links>.link-row {
+        border-bottom: var(--line-width) solid var(--line-color);
+    }
+
+    #panel-links .panel-icons {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
     .terminal .terminal-log .terminal-help {
         grid-template-columns: 1fr;
         gap: 0.125rem;
@@ -1120,6 +1214,8 @@ a {
     .link-row,
     .link-row::after,
     .link-row .link-go,
+    .icon-link,
+    .icon-link::after,
     .pill {
         transition: none;
     }

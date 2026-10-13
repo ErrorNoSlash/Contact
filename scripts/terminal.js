@@ -28,6 +28,15 @@ function createCell(text, className) {
     return cell;
 }
 
+function printError(message, tip) {
+    const row = document.createElement("div");
+    row.className = "terminal-row terminal-error";
+    row.append(createCell("error", "terminal-badge"), createCell(message, "terminal-message"));
+    if (tip) row.append(createCell(tip, "terminal-tip"));
+    terminalLog.append(row);
+    scrollLogToBottom();
+}
+
 function printHelpRow(command) {
     const row = document.createElement("div");
     row.className = "terminal-row terminal-help";
@@ -82,10 +91,10 @@ const commands = {
         usage: "open <n|name>",
         about: "open a link by number or name, e.g. open 2 or open github",
         run: function (argument) {
-            if (!argument) return printLine("open: which link? try open 2 or open github (type ls to see them)", "terminal-error");
+            if (!argument) return printError("open: which link?", "try open 2 or open github, or type ls to see them");
 
             const link = links[parseInt(argument, 10) - 1] || links.find(function (item) { return item.name === argument; });
-            if (!link) return printLine(`open: no link called '${argument}'. type ls to see them`, "terminal-error");
+            if (!link) return printError(`open: no link called '${argument}'`, "type ls to see them");
 
             printLine(`opening ${link.name} ...`);
             openLink(link.url);
@@ -121,7 +130,7 @@ function runCommand(text) {
 
     const commandKey = commandName.toLowerCase();
     if (!Object.hasOwn(commands, commandKey)) {
-        return printLine(`${commandName}: command not found. type help to see what you can do`, "terminal-error");
+        return printError(`${commandName}: command not found`, "type help to see what you can do");
     }
     commands[commandKey].run(argumentWords.join(" ").toLowerCase());
 }
