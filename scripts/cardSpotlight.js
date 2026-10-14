@@ -20,26 +20,24 @@ function releaseCards() {
     });
 }
 
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.addEventListener("pointermove", function (e) {
-        const card = e.target.closest(".profile-card");
-        if (!card) return;
+document.addEventListener("pointermove", function (e) {
+    const card = e.target.closest(".profile-card");
+    if (!card) return;
 
-        const isTouching = card.classList.contains("is-touched");
-        if (e.pointerType === "mouse" || isTouching) moveSpotlight(card, e);
-    })
+    const isTouching = card.classList.contains("is-touched");
+    if (e.pointerType === "mouse" || isTouching) moveSpotlight(card, e);
+})
 
-    document.addEventListener("pointerdown", function (e) {
-        if (e.pointerType === "mouse") return;
+document.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse") return;
 
-        const card = e.target.closest(".profile-card");
-        if (!card) return;
+    const card = e.target.closest(".profile-card");
+    if (!card) return;
 
-        clearTimeout(card.releaseTimer);
-        moveSpotlight(card, e);
-        card.classList.add("is-touched");
-    })
+    clearTimeout(card.releaseTimer);
+    moveSpotlight(card, e);
+    card.classList.add("is-touched");
+})
 
-    document.addEventListener("pointerup", releaseCards);
-    document.addEventListener("pointercancel", releaseCards);
-}
+document.addEventListener("pointerup", releaseCards);
+document.addEventListener("pointercancel", releaseCards);

@@ -37,7 +37,7 @@ function updateProgress() {
     else hidePreloader();
 }
 
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.classList.contains("is-arriving")) {
+if (document.documentElement.classList.contains("is-arriving")) {
     preloader.remove();
 } else {
     requestAnimationFrame(updateProgress);

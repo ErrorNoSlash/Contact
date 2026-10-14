@@ -187,11 +187,3 @@
         font-size: 0.75rem;
     }
 }
-
-@media (prefers-reduced-motion: reduce) {
-
-    .noscript-reload,
-    .noscript-chip {
-        transition: none;
-    }
-}

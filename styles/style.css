@@ -39,8 +39,17 @@
     box-sizing: border-box;
 }
 
+/* keeps Windows settings (scrollbars, text size, high contrast) from changing the site */
 html {
     height: 100%;
+    scrollbar-width: none;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    forced-color-adjust: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
 }
 
 /* Main body: the sheet fills the whole page */
@@ -527,11 +536,13 @@ a {
     backdrop-filter: blur(1rem);
     visibility: hidden;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.35s, visibility 0s 0.35s;
 
     &.is-open {
         visibility: visible;
         opacity: 1;
+        pointer-events: auto;
         transition: opacity 0.35s;
     }
 }
@@ -973,21 +984,24 @@ a {
     position: fixed;
     top: 0;
     left: 0;
-    transform: translate(-50%, -50%);
     border-radius: 50%;
     z-index: 99;
     mix-blend-mode: difference;
+    will-change: transform;
 }
 
+/* the negative margin centers them on the pointer, so the script only has to move them with transform */
 .cursor-dot {
     width: 0.45rem;
     height: 0.45rem;
+    margin: -0.225rem 0 0 -0.225rem;
     background: #fff;
 }
 
 .cursor-outline {
     width: 1.875rem;
     height: 1.875rem;
+    margin: -0.9375rem 0 0 -0.9375rem;
     border: 0.125rem solid #fff;
 }
 
@@ -1052,6 +1066,64 @@ a {
     }
 }
 
+/* short desktop windows (for example Windows display scaling at 150%): tighter rows so the page still fits */
+@media (max-height: 660px) and (min-width: 761px) {
+    .title {
+        min-height: 6rem;
+    }
+
+    .marquee {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .content {
+        flex-basis: 13.5rem;
+    }
+
+    .link-row .link-name {
+        font-size: 1.25rem;
+    }
+
+    .site-footer {
+        padding: 0.25rem 0.875rem;
+    }
+}
+
+/* very short desktop windows (for example a 768p laptop at 150%) */
+@media (max-height: 560px) and (min-width: 761px) {
+    .title,
+    .title.compact {
+        flex-basis: auto;
+        min-height: 5.5rem;
+    }
+
+    .content {
+        flex-basis: 11rem;
+    }
+
+    .terminal {
+        min-height: 5rem;
+    }
+
+    .link-row {
+        padding-block: 0;
+    }
+
+    .site-footer {
+        padding-block: 0.125rem;
+    }
+
+    .link-row .link-name {
+        font-size: 1.125rem;
+    }
+
+    .profile .profile-info,
+    .profile-card {
+        padding-block: 0.375rem;
+    }
+}
+
 /* ------------------------------ */
 /* MOBILE (up to ~760px width)    */
 /* ------------------------------ */
@@ -1065,7 +1137,7 @@ a {
     }
 
     #panel-links .panel-head {
-        padding: 0.875rem 0.5rem 0.875rem 1.125rem;
+        padding: 0.8125rem 0.5rem 0.875rem 1.125rem;
     }
 
     #panel-links .panel-body {
@@ -1196,39 +1268,5 @@ a {
     .terminal .terminal-prompt input {
         padding: 0.625rem 1rem;
         font-size: 1rem;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .preloader,
-    .page-transition {
-        display: none;
-    }
-
-    .marquee span,
-    .caret {
-        animation: none;
-    }
-
-    .rotate-notice .rotate-notice-icon {
-        animation: none;
-    }
-
-    .panel {
-        animation: none;
-    }
-
-    .veil,
-    .profile-card,
-    .profile-card::after,
-    .profile-card .card-asterisk,
-    .link-row,
-    .link-row::after,
-    .link-row .link-go,
-    .icon-link,
-    .icon-link::after,
-    .pill {
-        transition: none;
     }
 }

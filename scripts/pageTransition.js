@@ -11,11 +11,6 @@ function goToPage(url) {
     if (isLeaving) return;
     isLeaving = true;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        window.location.href = url;
-        return;
-    }
-
     try {
         sessionStorage.setItem(storageKey, "true");
     } catch (error) { }

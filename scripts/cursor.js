@@ -8,11 +8,9 @@ window.addEventListener("mousemove", function (e) {
 
     document.body.classList.add("cursor-visible");
 
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
+    cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
 
     cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
+        transform: `translate(${posX}px, ${posY}px)`
     }, { duration: 500, fill: "forwards" })
 })
