@@ -1056,8 +1056,16 @@ a {
 /* MOBILE (up to ~760px width)    */
 /* ------------------------------ */
 @media (max-width: 760px) {
+    .veil {
+        padding: clamp(0.5rem, 2vw, 1.5rem);
+    }
+
     #panel-links {
-        margin-bottom: 24dvh;
+        align-self: start;
+    }
+
+    #panel-links .panel-head {
+        padding: 0.875rem 0.5rem 0.875rem 1.125rem;
     }
 
     #panel-links .panel-body {
