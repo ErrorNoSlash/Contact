@@ -50,4 +50,5 @@ function tick() {
     setTimeout(tick, delay);
 }
 
+/* start typing in the tab title */
 tick();

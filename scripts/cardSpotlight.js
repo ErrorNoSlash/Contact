@@ -20,6 +20,7 @@ function releaseCards() {
     });
 }
 
+/* the spotlight follows the mouse, or a finger that is holding the card */
 document.addEventListener("pointermove", function (e) {
     const card = e.target.closest(".profile-card");
     if (!card) return;
@@ -28,6 +29,7 @@ document.addEventListener("pointermove", function (e) {
     if (e.pointerType === "mouse" || isTouching) moveSpotlight(card, e);
 })
 
+/* a touch starts the hold effect */
 document.addEventListener("pointerdown", function (e) {
     if (e.pointerType === "mouse") return;
 
@@ -39,5 +41,6 @@ document.addEventListener("pointerdown", function (e) {
     card.classList.add("is-touched");
 })
 
+/* letting go ends the hold effect */
 document.addEventListener("pointerup", releaseCards);
 document.addEventListener("pointercancel", releaseCards);

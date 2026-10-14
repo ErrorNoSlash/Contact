@@ -37,6 +37,7 @@ function updateProgress() {
     else hidePreloader();
 }
 
+/* skip the preloader when arriving from the other page, otherwise start counting */
 if (document.documentElement.classList.contains("is-arriving")) {
     preloader.remove();
 } else {
