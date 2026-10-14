@@ -4,6 +4,7 @@ const sheet = document.querySelector(".sheet");
 const navTabs = [...document.querySelectorAll(".nav-tabs a[href='#who'], .nav-tabs a[href='#links']")];
 const panels = [...veil.querySelectorAll(".panel")];
 let lastClickedTab = null;
+let lastPressPoint = null;
 
 function cloneElements(selector) {
     return [...document.querySelectorAll(selector)].map(function (element) {
@@ -60,9 +61,30 @@ function closePanel() {
     history.replaceState(null, "", location.pathname + location.search);
 }
 
+/* remember where the finger or mouse really went down, phones move the click to the nearest button */
+document.addEventListener("pointerdown", function (e) {
+    lastPressPoint = { x: e.clientX, y: e.clientY };
+})
+
+/* a key press has no point, so it is always allowed */
+document.addEventListener("keydown", function () {
+    lastPressPoint = null;
+})
+
+function isPressInside(element) {
+    if (!lastPressPoint) return true;
+
+    const box = element.getBoundingClientRect();
+    return lastPressPoint.x >= box.left && lastPressPoint.x <= box.right
+        && lastPressPoint.y >= box.top && lastPressPoint.y <= box.bottom;
+}
+
+/* the tabs only open when the press really was on them, a tap next to the button does nothing */
 navTabs.forEach(function (tab) {
     tab.addEventListener("click", function (e) {
         e.preventDefault();
+        if (!isPressInside(tab)) return;
+
         lastClickedTab = tab;
         showPanel(tab.hash.slice(1));
         history.replaceState(null, "", tab.hash);
