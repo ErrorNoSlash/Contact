@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-label="Dias Stas - contact site">
+  <rect x="0.5" y="0.5" width="1199" height="319" fill="#040507" stroke="#525252"/>
+  <g fill="#ffffff">
+    <circle cx="99" cy="115" r="8.6"/>
+    <circle cx="117" cy="115" r="8.6"/>
+    <circle cx="135" cy="115" r="8.6"/>
+    <circle cx="153" cy="115" r="8.6"/>
+    <circle cx="225" cy="115" r="8.6"/>
+    <circle cx="243" cy="115" r="8.6"/>
+    <circle cx="261" cy="115" r="8.6"/>
+    <circle cx="279" cy="115" r="8.6"/>
+    <circle cx="99" cy="133" r="8.6"/>
+    <circle cx="117" cy="133" r="8.6"/>
+    <circle cx="153" cy="133" r="8.6"/>
+    <circle cx="171" cy="133" r="8.6"/>
+    <circle cx="207" cy="133" r="8.6"/>
+    <circle cx="225" cy="133" r="8.6"/>
+    <circle cx="99" cy="151" r="8.6"/>
+    <circle cx="117" cy="151" r="8.6"/>
+    <circle cx="171" cy="151" r="8.6"/>
+    <circle cx="207" cy="151" r="8.6"/>
+    <circle cx="225" cy="151" r="8.6"/>
+    <circle cx="243" cy="151" r="8.6"/>
+    <circle cx="261" cy="151" r="8.6"/>
+    <circle cx="99" cy="169" r="8.6"/>
+    <circle cx="117" cy="169" r="8.6"/>
+    <circle cx="171" cy="169" r="8.6"/>
+    <circle cx="225" cy="169" r="8.6"/>
+    <circle cx="243" cy="169" r="8.6"/>
+    <circle cx="261" cy="169" r="8.6"/>
+    <circle cx="279" cy="169" r="8.6"/>
+    <circle cx="99" cy="187" r="8.6"/>
+    <circle cx="117" cy="187" r="8.6"/>
+    <circle cx="171" cy="187" r="8.6"/>
+    <circle cx="261" cy="187" r="8.6"/>
+    <circle cx="279" cy="187" r="8.6"/>
+    <circle cx="99" cy="205" r="8.6"/>
+    <circle cx="117" cy="205" r="8.6"/>
+    <circle cx="135" cy="205" r="8.6"/>
+    <circle cx="153" cy="205" r="8.6"/>
+    <circle cx="207" cy="205" r="8.6"/>
+    <circle cx="225" cy="205" r="8.6"/>
+    <circle cx="243" cy="205" r="8.6"/>
+    <circle cx="261" cy="205" r="8.6"/>
+  </g>
+  <line x1="340" y1="48" x2="340" y2="272" stroke="#525252"/>
+  <g font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" fill="#AEB5B8">
+    <text x="390" y="118" font-size="26">dias@contact:~$ ls&#9608;</text>
+    <text x="390" y="238" font-size="24">website · blog · git · fedi · mail</text>
+    <text x="390" y="276" font-size="24">contact.errornoslash.be</text>
+  </g>
+  <text x="388" y="196" font-family="Outfit, 'Arial Black', Arial, sans-serif" font-size="76" font-weight="900" letter-spacing="-2" fill="#ffffff">Dias Stas</text>
+</svg>
