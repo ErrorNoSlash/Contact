@@ -1012,8 +1012,10 @@ a {
     left: 0;
     border-radius: 50%;
     z-index: 99;
+    /* white with "difference": the cursor turns black on white parts of the page and white on dark parts */
     mix-blend-mode: difference;
     will-change: transform;
+    transition: opacity 0.3s;
 }
 
 /* the negative margin centers them on the pointer, so the script only has to move them with transform */
@@ -1024,12 +1026,26 @@ a {
     background: #fff;
 }
 
-/* the ring that trails behind the dot */
+/* the ring that trails behind the dot (cursor.js also makes it bigger over a link and smaller on a click) */
 .cursor-outline {
     width: 1.875rem;
     height: 1.875rem;
     margin: -0.9375rem 0 0 -0.9375rem;
     border: 0.125rem solid #fff;
+    transition: background-color 0.25s, opacity 0.3s;
+}
+
+/* over a link or button (cursor.js adds cursor-on-link): the ring fills in and, with the blend mode,
+   inverts whatever is under it, while the dot fades out. It is clear at a glance what you can click */
+body.cursor-on-link {
+
+    .cursor-outline {
+        background-color: #fff;
+    }
+
+    .cursor-dot {
+        opacity: 0;
+    }
 }
 
 /* mouse only: hide the real cursor once the custom one has appeared */
@@ -1045,6 +1061,15 @@ a {
         .cursor-dot,
         .cursor-outline {
             display: block;
+        }
+    }
+
+    /* the mouse has left the window: the cursor fades out */
+    body.cursor-away {
+
+        .cursor-dot,
+        .cursor-outline {
+            opacity: 0;
         }
     }
 }
