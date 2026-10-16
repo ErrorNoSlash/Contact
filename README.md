@@ -10,7 +10,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 - 🔠 Huge title with sliced echoes, letters spread across the row
 - 🎨 Link rows with a circular clip-path fill on hover
 - ✨ Profile card that lifts with a hard shadow on hover (or when pressed on a phone) while a spotlight follows the cursor or finger and the asterisk spins
-- 📱 Mobile menu — a `menu` pill opens a terminal-style menu: a Shell entry and the five links as an icon row, so the terminal is reachable on phones
+- 📱 Mobile menu — a `menu` pill opens a terminal-style menu: a Shell entry and the six links as an icon row, so the terminal is reachable on phones
 - 🪟 `who?` and `links?` blur the page and open a panel (close with the button, `Esc`, or a click outside)
 - 💻 Terminal on its own page — `help`, `ls`, `open`, `whoami`, `home`, `clear`
 - 🎞️ Clean page transition — a curtain wipes up between the contact page and the shell
@@ -29,6 +29,7 @@ My personal link-in-bio page, live at [contact.errornoslash.be](https://contact.
 | row      | goes to |
 | -------- | ------- |
 | website  | [hello.errornoslash.be](https://hello.errornoslash.be/) |
+| blog     | [blog.errornoslash.be](https://blog.errornoslash.be/) |
 | github   | [@ErrorNoSlash](https://github.com/ErrorNoSlash) |
 | gitlab   | [@ErrorN0Slash](https://gitlab.com/ErrorN0Slash/) |
 | mastodon | [@slashy@mastodon.social](https://mastodon.social/@slashy) |

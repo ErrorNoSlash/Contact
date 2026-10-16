@@ -336,14 +336,21 @@ a {
     min-width: 0;
     min-height: 0;
 
+    /* the photo box: the picture with the symbol grid on top of it */
+    .profile-photo {
+        position: relative;
+        flex: 1 1 0;
+        min-height: 0;
+        overflow: hidden;
+        border-bottom: var(--line-width) solid var(--line-color);
+    }
+
     img {
         display: block;
-        flex: 1 1 0;
         width: 100%;
-        min-height: 0;
+        height: 100%;
         object-fit: cover;
         filter: grayscale(1) contrast(1.35);
-        border-bottom: var(--line-width) solid var(--line-color);
     }
 
     .profile-tag {
@@ -362,6 +369,38 @@ a {
     .profile-info {
         flex: none;
         padding: 0.625rem 0.875rem;
+    }
+}
+
+/* possessed portrait: moving over the photo turns the cells under the pointer into flickering symbols
+   that fade back into the picture (pictureSymbols.js builds the grid and wakes the cells) */
+.symbol-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    justify-content: start;
+    align-content: start;
+    pointer-events: none;
+    font: 700 0.9375rem / 1 var(--font-mono);
+
+    span {
+        display: grid;
+        place-items: center;
+        background: var(--background);
+        color: var(--foreground);
+        opacity: 0;
+        transition: opacity 0.45s;
+    }
+
+    /* a woken cell shows at once, then fades out slowly when it goes back to sleep */
+    span.is-on {
+        opacity: 1;
+        transition: none;
+    }
+
+    span.is-inverted {
+        background: var(--foreground);
+        color: var(--background);
     }
 }
 
@@ -624,10 +663,17 @@ a {
         .link-name {
             font-size: clamp(1.4rem, 6vw, 2.1rem);
         }
+
+        /* the panel is narrow: every address goes on its own line under the name, so a long one
+           (like the mastodon handle) never breaks halfway with an odd indent */
+        .link-url {
+            display: block;
+            margin: 0.25rem 0 0;
+        }
     }
 }
 
-/* icon row of the menu panel: only shown on phones, where it replaces the five link rows (icons by Phosphor Icons) */
+/* icon row of the menu panel: only shown on phones, where it replaces the six link rows (icons by Phosphor Icons) */
 .panel-icons {
     display: none;
 }
@@ -1211,7 +1257,7 @@ body.cursor-on-link {
 
     #panel-links .panel-icons {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
     }
 
     .terminal .terminal-log .terminal-help {
@@ -1276,7 +1322,7 @@ body.cursor-on-link {
         flex-direction: row;
         height: 20dvh;
 
-        img {
+        .profile-photo {
             flex: none;
             width: 38%;
             height: 100%;
