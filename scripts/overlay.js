@@ -12,6 +12,13 @@ function cloneElements(selector) {
     });
 }
 
+function createTextElement(tagName, text, className) {
+    const element = document.createElement(tagName);
+    element.className = className;
+    element.textContent = text;
+    return element;
+}
+
 function createLinkRow(link, index) {
     const row = document.createElement("a");
     row.className = "link-row";
@@ -21,9 +28,14 @@ function createLinkRow(link, index) {
         row.rel = "noopener";
     }
 
-    row.innerHTML = `<span class="link-number">${String(index + 1).padStart(2, "0")}</span>`
-        + `<span><b class="link-name">${link.label}</b><small class="link-url">${link.display}</small></span>`
-        + `<span class="link-go">GO &nearr;</span>`;
+    const linkText = document.createElement("span");
+    linkText.append(createTextElement("b", link.label, "link-name"), createTextElement("small", link.display, "link-url"));
+
+    row.append(
+        createTextElement("span", String(index + 1).padStart(2, "0"), "link-number"),
+        linkText,
+        createTextElement("span", "GO \u2197", "link-go")
+    );
     return row;
 }
 

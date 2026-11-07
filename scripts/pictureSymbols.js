@@ -1,4 +1,4 @@
-/*controles the possessed portrait: every [data-symbols] picture is split into a grid
+/*controls the possessed portrait: every [data-symbols] picture is split into a grid
   of cells, moving the mouse (or a finger) over it wakes the cells under the pointer, they flicker through terminal symbols
   for a moment and then fade back into the picture*/
 const symbolCharacters = "!@#$%&*+=?/\\<>{}[]~^:;|01ds";

@@ -1,4 +1,4 @@
-/*controles the curtain between index.html and shell.html*/
+/*controls the curtain between index.html and shell.html*/
 const pageTransition = document.querySelector("#page-transition");
 const htmlElement = document.documentElement;
 const storageKey = "pageTransition";

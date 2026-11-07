@@ -26,10 +26,13 @@
     <meta name="twitter:description" content="Studying &amp; writing code. Website, GitHub, GitLab, Mastodon and mail.">
     <meta name="twitter:image" content="https://contact.errornoslash.be/images/og-image.png">
 
-    <!-- page transition: runs first -->
+    <!-- page transition + returning visitor: runs first, so the preloader never flashes -->
     <script>
         try {
             if (sessionStorage.getItem("pageTransition")) document.documentElement.classList.add("is-arriving");
+        } catch (error) { }
+        try {
+            if (localStorage.getItem("preloaderSeen")) document.documentElement.classList.add("is-returning");
         } catch (error) { }
     </script>
 
@@ -46,7 +49,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <!--Unami analytics-->
+    <!--Umami analytics-->
     <script defer src="https://stats.errornoslash.be/script.js" data-website-id="2a770b0d-958e-4eea-83b5-ead88451ac96"></script>
 
     <noscript>
@@ -162,7 +165,7 @@
                 <a class="link-row" href="https://gitlab.com/ErrorN0Slash/" target="_blank" rel="noopener">
                     <span class="link-number">04</span><span><b class="link-name">GitLab</b><small class="link-url">gitlab.com/ErrorN0Slash</small></span><span class="link-go">GO &nearr;</span>
                 </a>
-                <a class="link-row" href="https://mastodon.social/@slashy" target="_blank" rel="noopener">
+                <a class="link-row" href="https://mastodon.social/@slashy" target="_blank" rel="me noopener">
                     <span class="link-number">05</span><span><b class="link-name">Mastodon</b><small class="link-url">@slashy@mastodon.social</small></span><span class="link-go">GO &nearr;</span>
                 </a>
                 <a class="link-row" href="mailto:dias.stas@pm.me">
@@ -213,7 +216,7 @@
                 <a class="icon-link" href="https://gitlab.com/ErrorN0Slash/" target="_blank" rel="noopener" aria-label="GitLab" title="GitLab">
                     <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M230.15,117.1,210.25,41a11.94,11.94,0,0,0-22.79-1.11L169.78,88H86.22L68.54,39.87A11.94,11.94,0,0,0,45.75,41L25.85,117.1a57.19,57.19,0,0,0,22,61l73.27,51.76a11.91,11.91,0,0,0,13.74,0l73.27-51.76A57.19,57.19,0,0,0,230.15,117.1ZM58,57.5,73.13,98.76A8,8,0,0,0,80.64,104h94.72a8,8,0,0,0,7.51-5.24L198,57.5l13.07,50L128,166.21,44.9,107.5ZM40.68,124.11,114.13,176,93.41,190.65,57.09,165A41.06,41.06,0,0,1,40.68,124.11Zm87.32,91-20.73-14.65L128,185.8l20.73,14.64ZM198.91,165l-36.32,25.66L141.87,176l73.45-51.9A41.06,41.06,0,0,1,198.91,165Z"/></svg>
                 </a>
-                <a class="icon-link" href="https://mastodon.social/@slashy" target="_blank" rel="noopener" aria-label="Mastodon" title="Mastodon">
+                <a class="icon-link" href="https://mastodon.social/@slashy" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon">
                     <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M184,32H72A40,40,0,0,0,32,72V192a40,40,0,0,0,40,40h88a8,8,0,0,0,0-16H72a24,24,0,0,1-24-24v-8H184a40,40,0,0,0,40-40V72A40,40,0,0,0,184,32Zm24,112a24,24,0,0,1-24,24H48V72A24,24,0,0,1,72,48H184a24,24,0,0,1,24,24Zm-24-40v32a8,8,0,0,1-16,0V104a16,16,0,0,0-32,0v32a8,8,0,0,1-16,0V104a16,16,0,0,0-32,0v32a8,8,0,0,1-16,0V104a32,32,0,0,1,56-21.13A32,32,0,0,1,184,104Z"/></svg>
                 </a>
                 <a class="icon-link" href="mailto:dias.stas@pm.me" aria-label="Mail" title="Mail">

@@ -1,4 +1,4 @@
-/*controles the terminal on shell.html*/
+/*controls the terminal on shell.html*/
 const terminalLog = document.querySelector("#terminal-log");
 const terminalInput = document.querySelector("#terminal-input");
 

@@ -7,22 +7,23 @@
   Live at <a href="https://contact.errornoslash.be">contact.errornoslash.be</a>
 </p>
 
-|            |                                                     |
-| ---------- | --------------------------------------------------- |
-| **Stack**  | vanilla HTML, CSS and JavaScript                    |
-| **Build**  | none — open `index.html` and it runs                |
-| **Pages**  | the link page, a terminal, and a no-JavaScript page |
-| **Hosted** | GitHub Pages, on a subdomain                        |
+|            |                                                                |
+| ---------- | -------------------------------------------------------------- |
+| **Stack**  | vanilla HTML, CSS and JavaScript                               |
+| **Build**  | none — open `index.html` and it runs                           |
+| **Pages**  | the link page, a terminal, a no-JavaScript page and a 404 page |
+| **Hosted** | GitHub Pages, on a subdomain                                   |
 
 ---
 
 ## Pages
 
-| page            | what it is                                                       |
-| --------------- | ---------------------------------------------------------------- |
-| `index.html`    | the link page: big title, portrait, name card and six link rows  |
+| page            | what it is                                                      |
+| --------------- | --------------------------------------------------------------- |
+| `index.html`    | the link page: big title, portrait, name card and six link rows |
 | `shell.html`    | a small terminal to browse the same links by typing             |
 | `noscript.html` | shown when JavaScript is off — every link still works           |
+| `404.html`      | shown by GitHub Pages for any address that does not exist       |
 
 ## Links
 
@@ -52,7 +53,7 @@
 - **Custom cursor** — a dot with a gliding ring that inverts on light and dark parts; over a link it becomes a filled disc
 - **Panels** — `who?` and `links?` blur the page and open a panel (close with the button, `Esc` or a click outside)
 - **Curtain** wipes up between the link page and the shell
-- **Preloader** in terminal style, with a progress bar
+- **Preloader** in terminal style, with a progress bar — shown once per browser, return visits skip it
 - **Tab title** types and deletes small commands, like a shell prompt
 
 ### 💻 The shell
@@ -76,6 +77,8 @@
 ### 🧩 Extras
 
 - **No JavaScript?** Visitors are sent to `noscript.html`, a single terminal window that keeps every link working
+- **Verified on Mastodon** — the Mastodon links carry `rel="me"`, so the profile shows this page with a check mark
+- **404 page** — a missing address gets a terminal window with the path that was typed, `no such file or directory` and every link
 - **Link preview** — Open Graph and Twitter tags with a 1200×630 image, so shared links show a card
 - **Footer year** updates itself
 
@@ -99,13 +102,13 @@ Served with GitHub Pages on a subdomain:
 
 ## Customize
 
-| to change           | edit                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------- |
-| the links           | the `<a class="link-row">` blocks in `index.html` **and** the list in `scripts/links.js`   |
-| the tab title       | the `tabCommands` list at the top of `scripts/tabTitle.js`                                  |
-| the profile picture | replace `images/pfp.jpg`                                                                    |
-| the link preview    | the Open Graph tags in the `<head>` of both pages, and `images/og-image.png` (1200×630)    |
-| the colours         | the CSS variables at the top of `styles/style.css`                                          |
+| to change           | edit                                                                                               |
+| ------------------- | -------------------------------------------------------------------------------------------------- |
+| the links           | `scripts/links.js` **and** the links in `index.html`, `shell.html`, `noscript.html` and `404.html` |
+| the tab title       | the `tabCommands` list at the top of `scripts/tabTitle.js`                                         |
+| the profile picture | replace `images/pfp.jpg`                                                                           |
+| the link preview    | the Open Graph tags in the `<head>` of both pages, and `images/og-image.png` (1200×630)            |
+| the colours         | the CSS variables at the top of `styles/style.css`                                                 |
 
 The main colours:
 
@@ -127,6 +130,7 @@ The main colours:
 ├── index.html          # the link page
 ├── shell.html          # the terminal, on its own page
 ├── noscript.html       # shown when JavaScript is turned off
+├── 404.html            # shown by GitHub Pages for a missing address
 ├── CNAME               # custom domain for GitHub Pages
 ├── favicon.ico         # tab icon (16, 32, 48)
 ├── assets/
@@ -139,6 +143,7 @@ The main colours:
 ├── styles/
 │   ├── normalize.css
 │   ├── noscript.css    # the JavaScript-off page
+│   ├── 404.css         # the 404 page
 │   └── style.css       # colours, layout, transitions
 └── scripts/
     ├── preloader.js      # preloader with progress bar
@@ -152,14 +157,15 @@ The main colours:
     ├── cardSpotlight.js  # spotlight on the profile card
     ├── pictureSymbols.js # the possessed portrait
     ├── links.js          # every link, for the shell and the links panel
-    └── terminal.js       # the terminal on shell.html
+    ├── terminal.js       # the terminal on shell.html
+    └── notFound.js       # shows the missing address on 404.html
 ```
 
 </details>
 
-## License
+## Credits
 
-MIT. Icons are from [Phosphor Icons](https://phosphoricons.com) (MIT).
+Icons are from [Phosphor Icons](https://phosphoricons.com).
 
 ---
 

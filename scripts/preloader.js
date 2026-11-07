@@ -1,7 +1,9 @@
-/*controles the preloader*/
+/*controls the preloader*/
 const preloader = document.querySelector("#preloader");
 const preloaderFill = document.querySelector("#preloader-fill");
 const preloaderCount = document.querySelector("#preloader-count");
+const htmlClasses = document.documentElement.classList;
+const preloaderSeenKey = "preloaderSeen";
 
 const minimumTime = 900;
 const maximumTime = 3000;
@@ -15,6 +17,11 @@ window.addEventListener("load", function () {
 })
 
 function hidePreloader() {
+    // remember that this browser has seen it, so the next visit skips straight to the page
+    try {
+        localStorage.setItem(preloaderSeenKey, "true");
+    } catch (error) { }
+
     preloader.classList.add("is-done");
     setTimeout(function () {
         preloader.remove();
@@ -37,8 +44,8 @@ function updateProgress() {
     else hidePreloader();
 }
 
-/* skip the preloader when arriving from the other page, otherwise start counting */
-if (document.documentElement.classList.contains("is-arriving")) {
+/* skip the preloader when arriving from the other page or on a return visit, otherwise start counting */
+if (htmlClasses.contains("is-arriving") || htmlClasses.contains("is-returning")) {
     preloader.remove();
 } else {
     requestAnimationFrame(updateProgress);

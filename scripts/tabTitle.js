@@ -1,5 +1,7 @@
-/*controles the typing and deleting terminal text in the browser tab*/
+/*controls the typing and deleting terminal text in the browser tab*/
 const tabCommands = ["hello, world", "studying...", "writing code", "sudo say hi", "ping dias"];
+// the name stays in front, so bookmarks, history and search results always say whose page it is
+const tabName = "Dias Stas \u00b7 ";
 const tabPrompt = "~$ ";
 const tabCursor = "\u2588";
 
@@ -17,7 +19,7 @@ let isCursorVisible = true;
 
 function showTabTitle() {
     const typedText = tabCommands[commandIndex].slice(0, typedLength);
-    document.title = tabPrompt + typedText + (isCursorVisible ? tabCursor : "");
+    document.title = tabName + tabPrompt + typedText + (isCursorVisible ? tabCursor : "");
 }
 
 function tick() {
