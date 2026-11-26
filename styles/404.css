@@ -9,6 +9,7 @@
     min-width: 0;
 }
 
+/* the window: a rounded, bordered box, never wider than 36rem */
 .notfound-window {
     width: min(36rem, 100%);
     border: var(--line-width) solid var(--foreground);
@@ -16,6 +17,7 @@
     overflow: hidden;
 }
 
+/* the title bar along the top of the window */
 .notfound-head {
     display: flex;
     justify-content: space-between;
@@ -55,6 +57,7 @@
     }
 }
 
+/* what is inside the window, stacked with room between */
 .notfound-body {
     display: flex;
     flex-direction: column;
@@ -165,12 +168,14 @@
     }
 }
 
+/* the small line under the window */
 .notfound-footer {
     margin: 0;
     font-size: 0.75rem;
     opacity: 0.7;
 }
 
+/* very narrow phones: a smaller title bar */
 @media (max-width: 360px) {
     .notfound-head {
         padding-left: 0.875rem;

@@ -51,7 +51,7 @@
 - **Possessed portrait** — moving over the photo turns it into flickering terminal symbols
 - **Name card** lifts with a hard shadow, a spotlight follows the pointer and the asterisk spins
 - **Custom cursor** — a dot with a gliding ring that inverts on light and dark parts; over a link it becomes a filled disc
-- **Panels** — `who?` and `links?` blur the page and open a panel (close with the button, `Esc` or a click outside)
+- **Panels** — `who?` and `links?` dim the page and open a panel (close with the button, `Esc` or a click outside)
 - **Curtain** wipes up between the link page and the shell
 - **Preloader** in terminal style, with a progress bar — shown once per browser, return visits skip it
 - **Tab title** types and deletes small commands, like a shell prompt

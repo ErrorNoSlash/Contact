@@ -14,7 +14,7 @@ let isPageLoaded = document.readyState === "complete";
 
 window.addEventListener("load", function () {
     isPageLoaded = true;
-})
+});
 
 function hidePreloader() {
     // remember that this browser has seen it, so the next visit skips straight to the page

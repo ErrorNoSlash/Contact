@@ -27,7 +27,7 @@ document.addEventListener("pointermove", function (e) {
 
     const isTouching = card.classList.contains("is-touched");
     if (e.pointerType === "mouse" || isTouching) moveSpotlight(card, e);
-})
+});
 
 /* a touch starts the hold effect */
 document.addEventListener("pointerdown", function (e) {
@@ -39,7 +39,7 @@ document.addEventListener("pointerdown", function (e) {
     clearTimeout(card.releaseTimer);
     moveSpotlight(card, e);
     card.classList.add("is-touched");
-})
+});
 
 /* letting go ends the hold effect */
 document.addEventListener("pointerup", releaseCards);

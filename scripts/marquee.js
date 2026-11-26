@@ -27,4 +27,4 @@ document.fonts.ready.then(fillMarquee);
 // phones fire resize while scrolling (the address bar), so only rebuild when the width really changed
 window.addEventListener("resize", function () {
     if (marqueeRow.clientWidth !== lastRowWidth) fillMarquee();
-})
+});

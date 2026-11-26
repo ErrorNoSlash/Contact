@@ -9,4 +9,4 @@ document.querySelectorAll(".title .echo, .title h1").forEach(function (element) 
         span.textContent = letter;
         return span;
     }));
-})
+});

@@ -1,4 +1,4 @@
-/*who? / links? blur the page and open a panel*/
+/*who? / links? dim the page and open a panel*/
 const veil = document.querySelector("#veil");
 const sheet = document.querySelector(".sheet");
 const navTabs = [...document.querySelectorAll(".nav-tabs a[href='#who'], .nav-tabs a[href='#links']")];
@@ -54,6 +54,8 @@ function showPanel(panelName) {
     }
 
     veil.classList.toggle("is-open", isPanelName);
+    // the page behind holds still while the panel is open, so no work is spent on what nobody can see
+    document.body.classList.toggle("overlay-open", isPanelName);
     veil.setAttribute("aria-hidden", String(!isPanelName));
     sheet.toggleAttribute("inert", isPanelName);
     navTabs.forEach(function (tab) {
@@ -76,12 +78,12 @@ function closePanel() {
 /* remember where the finger or mouse really went down, phones move the click to the nearest button */
 document.addEventListener("pointerdown", function (e) {
     lastPressPoint = { x: e.clientX, y: e.clientY };
-})
+});
 
 /* a key press has no point, so it is always allowed */
 document.addEventListener("keydown", function () {
     lastPressPoint = null;
-})
+});
 
 function isPressInside(element) {
     if (!lastPressPoint) return true;

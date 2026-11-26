@@ -155,7 +155,7 @@ terminalInput.addEventListener("keydown", function (e) {
             terminalInput.value = "";
         }
     }
-})
+});
 
 printLine("welcome - type help to see what you can do");
 

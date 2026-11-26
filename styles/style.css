@@ -373,35 +373,14 @@ a {
 }
 
 /* possessed portrait: moving over the photo turns the cells under the pointer into flickering symbols
-   that fade back into the picture (pictureSymbols.js builds the grid and wakes the cells) */
+   that fade back into the picture (pictureSymbols.js draws them on this one canvas) */
 .symbol-grid {
     position: absolute;
     inset: 0;
-    display: grid;
-    justify-content: start;
-    align-content: start;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     font: 700 0.9375rem / 1 var(--font-mono);
-
-    & span {
-        display: grid;
-        place-items: center;
-        background: var(--background);
-        color: var(--foreground);
-        opacity: 0;
-        transition: opacity 0.45s;
-    }
-
-    /* a woken cell shows at once, then fades out slowly when it goes back to sleep */
-    & span.is-on {
-        opacity: 1;
-        transition: none;
-    }
-
-    & span.is-inverted {
-        background: var(--foreground);
-        color: var(--background);
-    }
 }
 
 /* name card: lifts on hover and a spotlight follows the pointer */
@@ -482,6 +461,7 @@ a {
     opacity: 1;
 }
 
+/* the asterisk turns while the card is held, like on hover */
 .profile-card.is-touched .card-asterisk {
     transform: rotate(180deg);
 }
@@ -526,11 +506,15 @@ a {
     &::after {
         content: "";
         position: absolute;
-        inset: 0;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        min-height: 150%;
+        aspect-ratio: 1;
+        border-radius: 50%;
         background: var(--clr);
-        clip-path: circle(0% at 50% 50%);
-        -webkit-clip-path: circle(0% at 50% 50%);
-        transition: 0.6s;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.6s;
         z-index: -1;
     }
 
@@ -541,8 +525,7 @@ a {
 
     &:hover::after,
     &:focus-visible::after {
-        clip-path: circle(100% at 50% 50%);
-        -webkit-clip-path: circle(100% at 50% 50%);
+        transform: translate(-50%, -50%) scale(1);
     }
 
     .link-number {
@@ -584,7 +567,7 @@ a {
     }
 }
 
-/* overlay: blurred veil + panel (who? / links?) */
+/* overlay: dimmed veil + panel (who? / links?) */
 .veil {
     position: fixed;
     inset: 0;
@@ -592,9 +575,9 @@ a {
     display: grid;
     place-items: center;
     padding: clamp(0.75rem, 3vw, 2rem);
-    background: color-mix(in srgb, var(--background) 50%, transparent);
-    -webkit-backdrop-filter: blur(1rem);
-    backdrop-filter: blur(1rem);
+    /* no live blur: blurring the whole window was redone on every frame and lagged badly on windows.
+       a strong tint keeps the panel easy to read and costs nothing */
+    background: color-mix(in srgb, var(--background) 86%, transparent);
     /* pointer-events off keeps the hidden close button from being tapped */
     visibility: hidden;
     opacity: 0;
@@ -607,6 +590,11 @@ a {
         pointer-events: auto;
         transition: opacity 0.35s;
     }
+}
+
+/* while the veil is open nothing behind it moves (title, marquee, carets): no work is spent on a page nobody can see */
+body.overlay-open .sheet :is(*, *::before, *::after) {
+    animation-play-state: paused !important;
 }
 
 /* the box inside the veil */
@@ -696,11 +684,15 @@ a {
     &::after {
         content: "";
         position: absolute;
-        inset: 0;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        min-height: 150%;
+        aspect-ratio: 1;
+        border-radius: 50%;
         background: var(--clr);
-        clip-path: circle(0% at 50% 50%);
-        -webkit-clip-path: circle(0% at 50% 50%);
-        transition: 0.6s;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.6s;
         z-index: -1;
     }
 
@@ -713,8 +705,7 @@ a {
     &:hover::after,
     &:focus-visible::after,
     &:active::after {
-        clip-path: circle(100% at 50% 50%);
-        -webkit-clip-path: circle(100% at 50% 50%);
+        transform: translate(-50%, -50%) scale(1);
     }
 
     & svg {
@@ -1066,8 +1057,10 @@ a {
     left: 0;
     border-radius: 50%;
     z-index: 99;
-    /* white with "difference": the cursor turns black on white parts of the page and white on dark parts */
-    mix-blend-mode: difference;
+    /* inverts what is under it: the cursor is black on white parts of the page and white on dark parts.
+       a filter on its own few pixels, not a blend mode: blending made the browser redraw the whole page on every frame */
+    -webkit-backdrop-filter: invert(1);
+    backdrop-filter: invert(1);
     will-change: transform;
     transition: opacity 0.3s;
 }
@@ -1077,24 +1070,33 @@ a {
     width: 0.45rem;
     height: 0.45rem;
     margin: -0.225rem 0 0 -0.225rem;
-    background: #fff;
 }
 
-/* the ring that trails behind the dot (cursor.js also makes it bigger over a link and smaller on a click) */
+/* how much of the middle of the ring is left alone (only the 0.125rem edge inverts), animated when it fills in */
+@property --cursor-hole {
+    syntax: "<length-percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
+/* the ring that trails behind the dot (cursor.js also makes it bigger over a link and smaller on a click).
+   the mask keeps only its edge, so only the edge inverts */
 .cursor-outline {
+    --cursor-hole: calc(100% - 0.125rem);
     width: 1.875rem;
     height: 1.875rem;
     margin: -0.9375rem 0 0 -0.9375rem;
-    border: 0.125rem solid #fff;
-    transition: background-color 0.25s, opacity 0.3s;
+    -webkit-mask: radial-gradient(closest-side, transparent var(--cursor-hole), #000 calc(var(--cursor-hole) + 0.05rem));
+    mask: radial-gradient(closest-side, transparent var(--cursor-hole), #000 calc(var(--cursor-hole) + 0.05rem));
+    transition: --cursor-hole 0.25s, opacity 0.3s;
 }
 
-/* over a link or button (cursor.js adds cursor-on-link): the ring fills in and, with the blend mode,
-   inverts whatever is under it, while the dot fades out. It is clear at a glance what you can click */
+/* over a link or button (cursor.js adds cursor-on-link): the ring fills in and inverts everything
+   under it, while the dot fades out. It is clear at a glance what you can click */
 body.cursor-on-link {
 
     .cursor-outline {
-        background-color: #fff;
+        --cursor-hole: 0%;
     }
 
     .cursor-dot {

@@ -51,7 +51,7 @@ document.addEventListener("click", function (e) {
 
     e.preventDefault();
     goToPage(url.href);
-})
+});
 
 window.addEventListener("pageshow", function (e) {
     if (!e.persisted) return;
@@ -60,7 +60,7 @@ window.addEventListener("pageshow", function (e) {
     try {
         sessionStorage.removeItem(storageKey);
     } catch (error) { }
-})
+});
 
 if (htmlElement.classList.contains("is-arriving")) {
     document.fonts.ready.then(revealPage);
